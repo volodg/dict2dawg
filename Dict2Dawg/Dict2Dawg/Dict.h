@@ -1,0 +1,60 @@
+#ifndef DICT_H
+#define DICT_H
+
+#import <vector>
+#import "datastructs.h"
+#import "MoveInfo.h"
+#import "TileRepo.h"
+#import "GameGrid.h"
+
+struct Edge {
+    uchar val;
+    uint ptr;
+    Edge (char v = 0, int p = 0) : val(v), ptr(p) {}
+    void unserialize (FILE *fp);
+};
+
+class Node {
+    std::vector<Edge> edges;
+    uint listSize;
+public:
+    bool isTerm;
+    Node () : listSize(0), isTerm(false) {}
+    int operator[] (int n) const 
+	{
+        for (uint i = 0; i < listSize; ++i) 
+		{
+            if (edges[i].val == n) return edges[i].ptr;
+            if (edges[i].val > n) return 0;
+        }
+        return 0;
+    }
+    const Edge at (int n) const 
+	{
+        return edges[n];
+    }
+    uint size () const
+	{
+        return listSize;
+    }
+    void unserialize (FILE *fp);
+};
+
+class Dict {
+	GameGrid * grid;
+    std::vector<Node> nodes;
+    void findWordsRec (TileRepo &tiles, std::string &str, std::vector<std::string> &res, int np);
+    bool findConstraintRec (const std::string &str, Constraint &cons, int np, uint pos);
+    void findMovesRec (TileRepo&, const int[2], int, int, std::string&, std::vector<MoveInfo>&, int=0, int=0, int=0);
+public:
+    bool load (std::string fname);
+    bool contains (const std::string str);
+	void setGrid(GameGrid * Grid);
+    /// Generates all possible anagrams of a set of tiles.
+    std::vector<std::string> findWords (TileRepo tiles);
+    /// Generates all possible moves given a set of tiles and a board.
+    void findMoves (TileRepo tiles, const int[2], int ori, int minLen, std::vector<MoveInfo>&);
+    Constraint findConstraint (const std::string str);
+};
+
+#endif // DICT_H

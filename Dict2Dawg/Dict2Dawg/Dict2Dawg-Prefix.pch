@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Dict2Dawg' target in the 'Dict2Dawg' project
+//
+
+#ifdef __OBJC__
+   #import <Foundation/Foundation.h>
+#endif
