@@ -385,13 +385,7 @@ int dawg_converter( char* inFilename, char* outFileName )
  *       Recursively build the next node and all its sub-nodes
  **/
 
-static INDEX
-#ifdef PROTOTYPES
-build_node(int depth)
-#else
-build_node(depth)
-int depth;
-#endif
+static INDEX build_node(int depth)
 {
    INDEX nedges = 0;
    INDEX i;
@@ -674,13 +668,7 @@ report_size()
 }
 
 #ifdef SMALL_MEMORY
-static void
-#ifdef PROTOTYPES
-merge_dawg (char *filename)
-#else
-merge_dawg (filename)
-char *filename;
-#endif
+static void merge_dawg (char *filename)
 {
    FILE *fp, *outfile;
    NODE data, edge;
@@ -806,7 +794,7 @@ char *filename;
 //   dawg_converter( "/Users/vgor/Player.txt", "/Users/vgor/sowpods1.bin" );
    Dict* dict_ = new Dict();
 
-   bool res_ = dict_->load( "/Users/vgor/dawg.bin" );
+   bool res_ = dict_->load( "/Users/vgor/sowpods1.bin.dwg" );
 
    NSLog( @"dict_->load: %d", res_ );
 
