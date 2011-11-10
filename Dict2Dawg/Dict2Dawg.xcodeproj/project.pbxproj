@@ -13,7 +13,7 @@
 		1B0DD5B8146C0DB800E5DC1C /* Dict.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5B7146C0DB800E5DC1C /* Dict.mm */; };
 		1B0DD5C2146C0EAB00E5DC1C /* TileRepo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5C1146C0EAB00E5DC1C /* TileRepo.mm */; };
 		1B0DD5C4146C0EDC00E5DC1C /* MoveInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5C3146C0EDC00E5DC1C /* MoveInfo.mm */; };
-		1B0DD5CF146C1E7400E5DC1C /* DDConverter2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5CE146C1E7400E5DC1C /* DDConverter2.mm */; };
+		65B3FD74146C7AF80025F260 /* DDConverter2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5CE146C1E7400E5DC1C /* DDConverter2.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -198,7 +198,7 @@
 				1B0DD5B8146C0DB800E5DC1C /* Dict.mm in Sources */,
 				1B0DD5C2146C0EAB00E5DC1C /* TileRepo.mm in Sources */,
 				1B0DD5C4146C0EDC00E5DC1C /* MoveInfo.mm in Sources */,
-				1B0DD5CF146C1E7400E5DC1C /* DDConverter2.mm in Sources */,
+				65B3FD74146C7AF80025F260 /* DDConverter2.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +297,7 @@
 				1B0DD5B2146C0C6700E5DC1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

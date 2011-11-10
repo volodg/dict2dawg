@@ -166,6 +166,11 @@ void Edge::unserialize (FILE *fp) {
     ptr = tmp & 0x1FFFF;
 }
 
+void eachEdge( const Edge& edge_ )
+{
+   NSLog( @"val: %d", edge_.val );
+}
+
 void Node::unserialize (FILE *fp) {
     listSize = 0;
     if (fread(&listSize, 1, 1, fp) != 1)
@@ -179,10 +184,28 @@ void Node::unserialize (FILE *fp) {
     for (uint i=0; i<listSize; ++i) 
         edges[i].unserialize(fp);
 
+//   edges.each
+//   std::for_each( edges.begin(), edges.end(), eachEdge );
+//   NSMutableArray* array_ = [ NSMutableArray arrayWithCapacity: edges.size() ];
+   std::string str_ = std::string();
+   for ( NSUInteger index_ = 0; index_ < edges.size(); ++index_ )
+   {
+      str_.push_back( edges[index_].val + 65 );
+   }
+
+   //str_.c_str()
+//   if ( str_.length() > 6 )
+
+   //NSLog( @"Node::serialize: isTerm read error." );
+
     if (fread(&isTerm, sizeof(isTerm), 1, fp) != 1)
 	{
 //		CCLOG(@"Node::serialize: isTerm read error.");
       NSLog( @"Node::serialize: isTerm read error." );
 		return;
 	}
+
+   if ( isTerm )
+      NSLog( @"Node: %@ %@", [ [ NSString alloc ] initWithBytes: str_.c_str() length: str_.length() encoding: NSASCIIStringEncoding ]
+            , isTerm ? @"+":@"-" );
 }
