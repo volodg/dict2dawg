@@ -1,60 +1,111 @@
 #import "DDConverter.h"
 
-#import "Dict.h"
+/* The line below is to protect against Bitnet mailer damage */
+#define MOD %
+/* This should be a Percent (for C Modulus) */ 
 
-// -*-mode: C; fill-column: 80; compile-command: "make dict2pdb"; -*-
-/*
- * Copyright 1997 by Eric House.  All rights reserved.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+/* Blech. This file is a mess. Make it the first rewrite... */
+#include "copyr.h"
+/*****************************************************************************/
+/*                                                                           */
+/*      FILE : PACK.C                                                        */
+/*                                                                           */
+/*      Re-pack a dawg/trie data structure using Franklin Liang's            */
+/*      algorithm for sparse matrix storage.  Final structure allows         */
+/*      direct indexing into trie nodes, so is exceedingly fast at checking. */
+/*      Unfortunately the trade off is that any algorithms which walk        */
+/*      the data structure and generate words will take much longer          */
+/*                                                                           */
+/*              PACK <dawg file (inc .ext)> <pack file (inc .ext)>           */
+/*                                                                           */
+/*****************************************************************************/
+
+/* Pending:
  
- Converts a <CR>-separated list of words, in stdin, to a DAWG written
- to stdout in PalmOS .pdb file format.  
+ see what closest gap between dawgptr + freenode is, and see whether we
+ can save space by overlapping input & output arrays with a window between
+ them.  Should get almost 50% of memory back.  Also, because of hacking
+ around a bug some time back, I'm using an extra array (new_loc) for
+ relocation of pointers, when in fact I could (and have in the past)
+ managed to relocate them in situ with not much extra overhead.
+ As I said, it needs a rewrite...
  
- Called like this: dict2dawg > dict.pdb <<.
- car
- cars
- cat
- does
- dog
- .
- 
- Records in the database are of 48K length by default, except that
- the last will likely be smaller and that they always end with the end
- of a sub-array (so that iteration over a subarray doesn't have to
- worry about boundaries.)
- 
- Records ought to hold two parallel arrays (but don't yet): first the
- index array, of shorts, and then the bits array of unsigned chars.
- Remember that one bit of the bits entry is actually the 17th bit of
- the index value...
- 
- Ultimately we want to associate xloc-like date with each dictionary so
- that langauges whose relevant letters aren't all in an ascii sequence can
- be accomodated.  In most cases we'll be passed in a file containing a table
- to be used for the mapping -- just a text file with one character per line
- where A might be the 0th line, umlaut-A the first, etc.  But we'll also
- generate such a table ourselves when not given one, and output it when
- asked.
- 
- Bugs: It's currently necessary that input to this program be sorted
- or some data may be lost.
- 
- To do:
- Make it two parallel arrays.
- Some sort of hashing on pruning.  */
+ */
+
+/* Note: I tried one implementation of this which used bitsets to test
+ whether two nodes were compatible.  In fact, it wasn't sufficiently
+ faster to justify the extra space it used for the arrays of flags.
+ Now I check for compatibility on the fly with lots of comparisons.
+ I do however have a seperate byte array to flag whether a trie
+ is based at any address.  There's probably a way of removing this.
+ */
+
+#include "grope.h"
+#ifndef grope_h
+/* If you don't have grope.h, create an empty one.
+ These will do for a basic system: */
+#undef KNOWS_VOID
+#undef STDLIBS
+#undef PROTOTYPES
+#define SYS_ANY 1
+#define COMPILER_ANY 1
+#define SMALL_MEMORY 1 /*  To be defined if you have to generate
+the data structure in bits. This will
+certainly be true for any non-trivial
+dictionary on MSDOS, or most home
+micros with 1Mb Ram or under. */
+#endif
+
+#include <stdio.h>
+
+/*#define RCHECK*/  /* Turn this back on if you have any problems. */
+
+#include "dawg.h"
+#include "utils.c"
+#include "init.c"
+#include "print.c"
+
+#ifdef SYS_MAC
+/* To compile with THINK C 4.0, place the files dawg.h grope.h,
+ pack.c and utils.c in a folder.  Create a project that contains
+ pack.c and the libraries unix and ANSI.
+ */
+#include <unix.h>
+#include <stdlib.h>
+#include <console.h>
+/* Assume a 1Mb mac for the moment. Someday I'll add dynamic RAM sizing */
+#define SMALL_MEMORY
+#endif
+
+#define TRUE (0==0)
+#define FALSE (0!=0)
+#define MAX_WORD_LENGTH 32
+
+/* These two magic numbers alter a very hacky heuristic employed in
+ the packing algorithm.  Tweaking them judiciously ought to speed
+ it up significantly (at the expense of a slightly sparser packing */
+#define DENSE_LOWER 100
+#define DENSE_UPPER 200
+
+/*###########################################################################*/
+INDEX ptrie_size = 0;
+static NODE PCCRAP *ptrie;
+#ifdef RCHECK
+/* can't use the standard range_check macro because these are slightly
+ non-standard. */
+#define PTRIE(x) ptrie[RANGECHECK((x), ptrie_size)]
+#define DATA(x) (((x) >> 12) == 0xf2f1 ? toosmall((x), 0, __LINE__) : (x))
+#else
+/* so supply an explicit base case */
+#define PTRIE(x) ptrie[x]
+#define DATA(x) (x)
+#endif
+static char PCCRAP *trie_at;  /* save some time by caching this info --
+                               previously it was a function called on each test */
+static INDEX freenode, lowest_base = 1, highest_base = -1;
+static int debug = FALSE;
+
+#include "dawg.h"
 
 #include <stdio.h>
 #include <assert.h>
@@ -63,636 +114,292 @@
 #include <string.h>
 #include <getopt.h>
 
-//#include "swap.h"
-
-#define PRE_EDGE_RECORDCOUNT 3
-
-/* #include "pdb.h" */
-#include "dawg.h"
-/* #include "swap.c" */
-
-typedef char boolean;
-#define true 1
-#define false 0
-
-typedef unsigned char TileChar;
-
-typedef struct tree_edge {
-   unsigned char letter;
-   unsigned long index;
-   boolean terminal;
-   struct tree_edge* prev;
-   struct tree_edge* next;
-   struct tree_edge* children;
-} tree_edge;
-
-#define MAXLENGTH 40
-
-
-//////////////////////////////////////////////////////////////////////////////
-// prototypes
-//////////////////////////////////////////////////////////////////////////////
-static void addToTree( unsigned char* buf, short buflen, tree_edge* nodege );
-tree_edge* newNode( unsigned char letter, boolean terminal );
-static void remember( unsigned char* c );
-void readInTables( char* orderTableFile );
-void init_prune_data();
-void prune_tree( tree_edge* edge );
-/* unsigned short byte_swap( unsigned short d ); */
-void write_children( array_edge* mainArray, tree_edge* edge );
-int count_nodes( tree_edge* edge );
-unsigned long index_children( tree_edge* edge, unsigned long firstIndex );
-void write_as_pdb( array_edge* edges, unsigned long edgeCount );
-void usage( char* progName );
-void initTables( void );
-TileChar CharToTile( unsigned char ch );
-static short fileSize( char* fileName );
-void write_as_files( array_edge* edges, unsigned long edgeCount,
-                    char* fileNameBase );
-
-unsigned long gWordCount = 0;
-
-//////////////////////////////////////////////////////////////////////////////
-// globals
-//////////////////////////////////////////////////////////////////////////////
-boolean verbose = 0;
-tree_edge* rootEdge;
-int gNodeCount = 0;
-long gNodesCreated;
-long gPulled;
-char gDictName[32];
-char* gOrderTableFileName = NULL;
-/* char* gValueTableFileName = NULL; */
-short gNumUniqueTiles;
-typedef struct OrderResEntry {
-   /*      unsigned char count; */
-   /*      unsigned char value; */
-   unsigned char ch;
-} OrderResEntry;
-static OrderResEntry gOrderTable[32];
-static signed short gLookupTable[256];
-
-dawg_header gDawgHeader;
-
-//////////////////////////////////////////////////////////////////////////////
-// main
-//////////////////////////////////////////////////////////////////////////////
-int dawg_converter( char* baseFileNameArg ) {
-   char buf[MAXLENGTH+10];
-   unsigned long edgeCount;
-   long maxWordLen = MAXLENGTH;
-   int got;
-   char* baseName = NULL;
-   array_edge* mainArray = NULL;
-   
-   initTables();
-   memset( &gDawgHeader, 0, sizeof(gDawgHeader) );
-   
-   gDictName[0] = '\0';
-   
-   /*while ( (got = getopt(argc, argv, "t:vhn:")) != EOF ) {
-      switch ( got ) {
-         case 'm':
-            sscanf( optarg, "%ld", &maxWordLen );
-            fprintf( stderr, "maxWordLen set to %ld\n", maxWordLen );
-            break;
-         case 'n':
-            baseName = optarg;
-            break;
-         case 'v':
-            verbose = true;
-            fprintf( stderr, "verbose set\n" );
-            break;
-         case 't':
-            gOrderTableFileName = optarg;
-            break;
-         case 'h':
-         default:
-            usage( argv[0] );
-            break;
+int compatible(NODE *node, INDEX i) /* Can a node be overlaid here? */
+{
+   int c;
+   for (c = 0; c < MAX_CHARS; c++) {
+      if ((node[c]&M_FREE) == 0) { /* Something to slot in... */
+         if ((PTRIE(i+c) & M_FREE) == 0) return(FALSE); /* but no slot for it */
       }
-   }*/
-   verbose = true;
-   baseName = baseFileNameArg;
+   }
+   return(TRUE);
+}
+
+INDEX
+#ifdef PROTOTYPES
+find_slot(NODE *node)
+#else
+find_slot(node)
+NODE *node;
+#endif
+{               /* Try each position until we can overlay this node */
+   INDEX i;
+   for (i = lowest_base; i < freenode; i++) {
+      if ((!trie_at[i]) && (compatible(node, i))) {
+         /* nothing here already */
+         /* and this one will fit */
+         return(i);
+      }
+   }
+   fprintf(stderr, "Should never fail to find a slot!\n");
+   /* because the output array is larger than the input... */
+   exit(5);
+   /* NOT REACHED */
+   return(0);
+}
+
+static int changes;
+
+INDEX
+#ifdef PROTOTYPES
+pack(NODE *node)
+#else
+pack(node)
+NODE *node;
+#endif
+{
+   int c;
+   INDEX slot;
+   NODE value;
    
-   if ( gOrderTableFileName != NULL ) {
-      readInTables( gOrderTableFileName );
+   slot = find_slot(node);  /* slot is also returned as the result,
+                             to be used in relocation */
+   /* Place node at slot */
+   changes = 0;
+   for (c = 0; c < MAX_CHARS; c++) {
+      value = node[c];
+      if ((value&M_FREE) == 0) { /* Something to fit? */
+         if (((value>>V_LETTER)&M_LETTER) == (INDEX)c+BASE_CHAR) {
+            /* Just a consistency check - could safely be removed */
+            PTRIE(slot+c) = DATA(value);
+            changes++;
+         }
+      }
+   }
+   /* The hack heuristics below keep a N^2 operation down to linear time! */
+   if ((slot == lowest_base) || (slot >= lowest_base+DENSE_LOWER)) {
+      /* Heuristic is: we increase the initial search position if the
+       array is packed solid up to this point or we're finding it *very*
+       hard to find suitable slots */
+      int found = FALSE;
+      for (;;) {
+         INDEX c;
+         while (trie_at[lowest_base]) lowest_base++;
+         for (c = lowest_base; c < lowest_base+MAX_CHARS; c++) {
+            if ((PTRIE(c)&M_FREE) != 0) {found = TRUE; break;}
+         }
+         if (found && (slot < lowest_base+DENSE_UPPER)) break;
+         /* ^ Skip hard slots to fill */
+         lowest_base++; /* although nothing is based here, the next N slots
+                         are filled with data from the last N tries. */
+         
+         /* Actually I'm not sure if 256 sequential trees each with the
+          same element used would actually block the next 256 slots
+          without a trie_at[] flag being set for them.  However it
+          does no harm to believe this... I must formally check this
+          someday once all the other stuff is in order. */
+      }
    }
    
-   assert( baseName );
-   
-   rootEdge = newNode( '\0', 0 );
-   gNodesCreated = 0;
-   gPulled = 0;
+   if (slot > highest_base) highest_base = slot;
+   /* This is info for when we try to overlap input & output
+    arrays, -- with the output sitting some large number of
+    bytes lower down than the input. */
+      trie_at[slot] = TRUE;
+      return(slot);
+}
+/*###########################################################################*/
 
-   FILE* source_file_ = fopen( baseName, "r" );
-   
-   while ( fgets( buf, MAXLENGTH+9, source_file_ ) ) {
-      unsigned char* cr = (unsigned char*)strchr( buf, '\n' );
-      short wordlen;
-      if ( cr ) {
-         *cr = '\0';
+static NODE PCCRAP *dawg;
+static INDEX PCCRAP *new_loc;
+static INDEX nedges;
+
+NODE this_node[MAX_CHARS];
+
+INDEX take_node(INDEX ptr)
+{
+   NODE data;
+   INDEX edge;
+   int let;
+   int endsword;
+   int endsnode;
+   char ch;
+   int changes = 0;
+   for (let = 0; let < MAX_CHARS; let++) this_node[let] = M_FREE;
+      for (;;) {
+         if ( let >= MAX_CHARS )
+            return(0);
+
+         data = dawg[ptr++];
+         if (data == 0) {
+            return(-1);
+         } else {
+            endsword = ((data & M_END_OF_WORD) != 0);
+            endsnode = ((data & M_END_OF_NODE) != 0);
+            edge = data & M_NODE_POINTER;
+            let = (int) ((data >> V_LETTER) & M_LETTER);
+            ch = let + BASE_CHAR;
+            
+            this_node[let] = edge & M_NODE_POINTER;
+            if (endsword) this_node[let] |= M_END_OF_WORD;
+               this_node[let] |= (NODE)ch<<V_LETTER;
+               
+               changes++;
+            if (endsnode) break;
+         }
       }
+   if (changes != 0) {
+      return(ptr);
+   } else {
+      fprintf(stderr, "Fatal error\n");
+      return(0);
+   }
+}
+
+NODE
+#ifdef PROTOTYPES
+redirect_node(NODE ptr)
+#else
+redirect_node(ptr)
+NODE ptr;
+#endif
+{
+   NODE data;
+   INDEX edge;
+   int endsword;
+   char ch;
+   data = DATA(PTRIE(ptr));
+   
+   endsword = ((data & M_END_OF_WORD) != 0);
+   edge = data & M_NODE_POINTER;
+   ch = (int) ((data >> V_LETTER) & M_LETTER);
+   
+   /*edge = dawg[edge] & M_NODE_POINTER;*/
+   edge = new_loc[edge];
+   
+   ptr = edge;
+   ptr |= (NODE)ch<<V_LETTER;
+   if (endsword) ptr |= M_END_OF_WORD;
       
-      wordlen = strlen( buf );
+      return(ptr);
+}
+
+int dawg_init(char *filename, NODE PCCRAP **dawgp, INDEX *nedges);
+void dawg_print(NODE PCCRAP *dawg, INDEX node);
+void putword(long w, FILE *fp);
+
+int dawg_converter2(char* inFilename, char* outFileName)
+{
+   INDEX dawgptr = 1, trieptr, newdawgptr, i, nodes = 0;
+   FILE *triefile;
+   
+#ifdef SYS_MAC
+   argc = ccommand(&argv);
+#endif
+   
+   if (!dawg_init(inFilename, &dawg, &nedges)) exit(EXIT_ERROR);
+      if (debug) dawg_print(dawg, (INDEX)ROOT_NODE); /* assume small test file! */
+         
+         freenode = ((nedges*16)/15)+(4*MAX_CHARS);
+      /* Minimal slop for pathological packing? */
+         ptrie_size = freenode;
+         ptrie = MALLOC((SIZE_T)freenode, sizeof(NODE));
+         if (ptrie == NULL) {
+            fprintf(stderr, "Cannot claim %ld bytes for ptrie[]\n",
+                    sizeof(NODE)*freenode);
+            exit(EXIT_ERROR);
+         }
+   new_loc = MALLOC((SIZE_T)freenode, sizeof(NODE));
+   if (new_loc == NULL) {
+      fprintf(stderr, "Cannot claim %ld bytes for new_loc[]\n",
+              sizeof(NODE)*freenode);
+      exit(EXIT_ERROR);
+   }
+   trie_at = (char PCCRAP *)MALLOC((SIZE_T)freenode, sizeof(char));
+   if (trie_at == NULL) {
+      fprintf(stderr, "Cannot claim %ld bytes for trie_at[]\n", freenode);
+      exit(EXIT_ERROR);
+   }
+   for (i = 0; i < freenode; i++) {
+      ptrie[i] = M_FREE; new_loc[i] = 0; trie_at[i] = FALSE;
+   }
+   
+   dawg[0] = 0; /* 1st entry is never looked at, and maps to itself */
+   
+   dawgptr = 1;
+   
+   /* Relocate initial node at 1 seperately */
+   
+   newdawgptr = take_node(dawgptr /* 1 */);
+   trieptr = pack(this_node);
+   /*dawg[dawgptr] = trieptr;*/
+   /* What the hell does this do??? I've forgotten!!! - oh yes, this
+    was relocating in situ, without new_loc... */
+   new_loc[dawgptr] = trieptr;
+   dawgptr = MAX_CHARS+1;
+   
+   {INDEX maxdiff = 0, diff;
+      for (;;) {
+         if (highest_base > dawgptr) {
+            diff = highest_base - dawgptr;
+            if (diff > maxdiff) maxdiff = diff;
+               }
+         newdawgptr = take_node(dawgptr);
+         if (newdawgptr == -1) {
+            dawgptr++;
+            continue;
+         }
+         trieptr = pack(this_node);
+         /*dawg[dawgptr] = trieptr;*/
+         new_loc[dawgptr] = trieptr;
+         dawgptr = newdawgptr;
+         if (dawgptr > nedges) {
+            break;  /* AHA!!! I was doing this in the
+                     wrong order & lost last entry! *AND* had '>=' for '>' */
+         }
+         nodes++;
+         if ((nodes MOD 1000) == 0) fprintf(stderr, "%ld nodes\n", nodes);
+            }
+      if (debug) fprintf(stderr, "wavefront gets up to %ld\n", maxdiff);
+         }
+   if (debug) fprintf(stderr, "All packed - used %ld nodes\n", highest_base);
+      for (trieptr = 1; trieptr < freenode; trieptr++) {
+         /*
+          extract edge from ptrie[trieptr],
+          look it up via dawg[edge], slot it back in
+          (while preserving other bits)
+          */
+         PTRIE(trieptr) = redirect_node(trieptr);
+      }
+   /* Finally, remember to bump up highest_base in case last node is only
+    one edge and 25 others are missing! */
+   if (debug) fprintf(stderr, "Redirected...\n");
       
-      if ( (maxWordLen != MAXLENGTH) && (wordlen > maxWordLen) ) {
-         continue;
-      } else if ( wordlen > MAXLENGTH ) {
-         fprintf( stderr, "word %s too long\n", buf );
+      triefile = fopen(outFileName, WRITE_BIN);
+      if (triefile == NULL) {
+         fprintf(stderr, "Cannot write to packed trie file\n");
          exit(1);
       }
+   if (debug) fprintf(stderr, "File opened...\n");
       
-      // remember that *cr may be 0 *after* the call to remember	
-      cr = (unsigned char*)buf;
-      for ( ; *cr; ++cr ) {
-         remember(cr);
-      }
-      
-      addToTree( (unsigned char*)buf, wordlen, rootEdge );
-      ++gWordCount;
-   }
-
-   fclose( source_file_ );
-   
-   fprintf( stderr, "done with addToTree (%ld nodes; %ld words)\n",
-           gNodesCreated, gWordCount );
-   
-   init_prune_data();
-   prune_tree( rootEdge );
-   
-   fprintf( stderr, "done with prune_tree: %ld pulled\n", gPulled );
-   
-   edgeCount = index_children( rootEdge, 0 );
-   
-   if ( edgeCount >= 0x1FFFF ) {
-      fprintf( stderr, "ERROR: too many edges: %ld (max is %ld)\n",
-              edgeCount, (long)0x1FFFF );
-      exit( 1 );
-   }
-   
-   fprintf( stderr, "done with index_children; edgeCount = %ld\n", edgeCount);
-   mainArray = (array_edge*)malloc( edgeCount * sizeof(array_edge) );
-   assert( mainArray );
-   
-   /*     largestDiff = smallestDiff = 0; */
-   write_children( mainArray, rootEdge );
-   fprintf( stderr, "done with write_children\n" );
-   /*     fprintf( stderr, "largestDiff = %ld, smallestDiff = %ld\n", */
-   /* 	     largestDiff, smallestDiff ); */
-   
-   // Now we have a huge array in memory and need to write it to pdb
-   // format.
-   write_as_files( mainArray, edgeCount, baseName );
-   
-   /*     if ( verbose ) { */
-   /* 	fprintf( stderr, "Writing %d nodes\n", edgeCount ); */
-   /* 	fprintf( stderr, "{letter, next_index, terminal, lastEdge}\n" ); */
-   /* 	for ( i = 0; i < edgeCount; ++i ) { */
-   /* 	    array_edge* edge = &gArray[i]; */
-   // 	    fprintf( stderr, "/*[%d]*/ {%c, %d, %s, %s}\n", */
-   /* 		     i, */
-   /* 		     (edge->bits & LETTERMASK) + 'a', */
-   /* 		     ushort_byte_swap(edge->first_child), */
-   /* 		     (edge->bits&TERMINALMASK)?"true":"false", */
-   /* 		     (edge->bits&LASTEDGEMASK)?"true":"false" ); */
-   /* 	} */
-   /*     } */
-   
-   /*     fprintf( stderr, "writing %ld edges to file\n", edgeCount );     */
-   /*     for ( i = 0; i < edgeCount; ++i ) { */
-   /* 	fwrite( &gArray[i], sizeof(array_edge), 1, stdout ); */
-   /*     } */
-   
-   return 0;
-} // main
-
-/* Given a node on the tree (not yet converted to a directed graph)
- * walk down it using letters where they exist and adding them where
- * the don't.
- *
- * The structure we're building here looks like this, for input "CAT"
- * and "CAR":
- *         /T
- *    *-C-A
- *         \R
- * That is, words beginning with the same letters share the same initial
- * branches of the tree.  Thus on entering a given level of recursion
- * there are these possibilities:
- * a) There's nothing here: create a new node and recurse on it.
- * b) We find a node that holds the letter we seek: recurse on it.
- * c) We reach the end of the list of letters without finding what we
- * seek: create a new node at the end and recurse on it.
- * d) We reach a node before which ours should have been found: create a
- * new node in the right place and recurse on it.
- */
-static void addToTree( unsigned char* buf, short buflen, tree_edge* node ) {
-   unsigned char target = *buf;
-   boolean terminal = (buflen == 1);
-   tree_edge* child;
-   tree_edge* prev = NULL;
-   tree_edge* new_node;
-   
-   /*      if ( !target ) { */
-   /*  	assert( buflen == 0 ); */
-   /*  	return; */
-   /*      } */
-   if ( buflen == 0 ) return;
-   assert( buflen > 0 );
-   
-   if ( node->children == NULL ) {
-      addToTree( buf+1, buflen-1,
-                node->children = newNode( target, terminal ) );
-      return;
-   }
-   
-   for ( child = node->children; child != NULL; child = child->next ) {
-      if ( child->letter == target ) {
-         addToTree( buf+1, buflen-1, child );
-         return;
-      } else if ( child->letter > target ) { // it's not in the tree yet.
-         new_node = newNode( target, terminal );
-         new_node->next = child;
-         new_node->prev = child->prev;
-         if ( child->prev ) {
-            child->prev->next = new_node;
-         } else { // it's the first node!
-            node->children = new_node;
-         }
-         child->prev = new_node;
-         
-         addToTree( buf+1, buflen-1, new_node );
-         return;
-      }
-      prev = child;
-   }
-   
-   assert( prev != NULL );
-   new_node = newNode( target, terminal );
-   prev->next = new_node;
-   new_node->prev = prev;
-   addToTree( buf+1, buflen-1, new_node );
-   return;
-}
-
-tree_edge* newNode( unsigned char letter, boolean terminal ) {
-   tree_edge* result = (tree_edge*)malloc( sizeof(tree_edge ));
-   assert( result );
-   ++gNodesCreated;
-   result->letter = letter;
-   result->index = 0xFFFF;
-   result->terminal = terminal;
-   result->children = result->next = result->prev = NULL;
-   
-   ++gNodeCount;
-   return result;
-}
-
-//////////////////////////////////////////////////////////////////////////////
-// prune_tree (and helpers)
-//////////////////////////////////////////////////////////////////////////////
-boolean sameStructure( tree_edge* node1, tree_edge* node2 ) {
-   // simple cases first.
-   if ( node1 == node2 ) return true;
-   else if ( node1 == NULL || node2 == NULL ) return false;
-   else if ( node1->letter != node2->letter ) return false;
-   else if ( node1->terminal != node2->terminal ) return false;
-   //else if ( count_nodes( node1 ) != count_nodes( node2 ) ) return false;
-   else {
-      tree_edge* children1;
-      tree_edge* children2;
-      for ( children1 = node1->children, children2 = node2->children;
-           children1 || children2;
-           children1 = children1->next, children2 = children2->next ) {
-         if ( !sameStructure( children1, children2 ) )
-            return false;
-      }
-      for ( children1 = node1->next, children2 = node2->next;
-           children1 || children2;
-           children1 = children1->next, children2 = children2->next ) {
-         if ( !sameStructure( children1, children2 ) )
-            return false;
-      }
-      return (children1 == NULL) && (children2 == NULL);
-   }
-}
-
-typedef struct visited_edge {
-   tree_edge* theEdge;
-   struct visited_edge* next;
-} visited_edge;
-static visited_edge* visitedEdges[256];
-
-void init_prune_data() {
-   short i;
-   for ( i = 0; i < 26; ++i ) {
-      visitedEdges[i] = NULL;
-   }
-}
-
-tree_edge* visited( tree_edge* node ) {
-   short hash = node->letter;// - 'a';
-   //assert( hash >=0 && hash < 26 );
-   if ( visitedEdges[hash] == NULL ) {
-      visitedEdges[hash] = (visited_edge*)malloc(sizeof(visited_edge));
-      assert( visitedEdges[hash] );
-      visitedEdges[hash]->theEdge = node;
-      visitedEdges[hash]->next = NULL;
-      return node;
-   } else {
-      visited_edge* visited;
-      for ( visited = visitedEdges[hash]; visited; 
-           visited = visited->next ) {
-         if ( verbose ) {
-            fprintf( stderr, "looking at %c and %c\n",
-                    node->letter, visited->theEdge->letter );
-         }
-         if ( sameStructure( node, visited->theEdge ) ) {
-            if ( verbose ) {
-               fprintf( stderr, "pruning tree beginning with %c\n",
-                       node->letter );
+      ptrie[0] = highest_base+MAX_CHARS-1;/* File size in words
+                                           (-1 because doesn't include itself)  */
+      if (debug) fprintf(stderr, "Dumping... (0..%ld)\n", highest_base+MAX_CHARS-1);
+         for (i = 0; i < highest_base+MAX_CHARS; i++) {/* dump packed DAG */
+            NODE n;
+            n = DATA(PTRIE(i));
+            putword(n, triefile);
+            if (ferror(triefile)) {
+               fprintf(stderr, "*** TROUBLE: Writing DAG -- disk full?\n");
+               fclose(triefile);
+               exit(1);
             }
-            return visited->theEdge;
          }
-      }
-      // didn't find it.  Insert new entry at head of list.
-      visited = (visited_edge*)malloc(sizeof(visited_edge));
-      assert( visited );
-      visited->theEdge = node;
-      visited->next = visitedEdges[hash];
-      visitedEdges[hash] = visited;
-      return node;
-   }
-} // visited
+   if (debug) fprintf(stderr, "Dumped...\n");
+      fclose(triefile);
+      if (debug) fprintf(stderr, "Done.\n");
+         }
 
-int count_nodes( tree_edge* edge ) {
-   short result = 0;
-   while ( edge ) {
-      result += count_nodes( edge->children );
-      ++result;
-      edge = edge->next;
-   }
-   return result;
-}
-
-/* Walk the tree.  Starting at the lowest points, lookup each node to see
- * if an equivalent one has already been visited.  If so, replace it with
- * (a ptr to) the first one seen.
- */
-void prune_tree( tree_edge* edge ) {
-   tree_edge* child = edge->children;
-   tree_edge* tmp;
-   
-   //    fprintf( stderr, "prune_tree called\n" );
-   
-   if ( !child ) {
-      return;
-   }
-   
-   /*     if( edge->letter == 'c' ) { */
-   /* 	fprintf( stderr, "C\n" ); */
-   /*     } */
-   
-   while ( child ) {
-      prune_tree( child );
-      child = child->next;
-   }
-   
-   tmp = visited( edge->children );
-   if ( tmp != edge->children ) {
-      short pulled = count_nodes(edge->children);
-      /* 	fprintf( stderr, "Removing %d nodes\n", pulled ); */
-      gPulled += pulled;
-      edge->children = tmp;
-   }
-}
-
-//////////////////////////////////////////////////////////////////////////////
-// write_edge (and helpers)
-//////////////////////////////////////////////////////////////////////////////
-
-unsigned long index_children( tree_edge* edge, unsigned long firstIndex ) {
-   tree_edge* child;
-   for ( child = edge->children; child; child = child->next ) {
-      if ( child->index == 0xFFFF ) {
-         child->index = firstIndex++;
-         /* 	    assert( firstIndex != 0xFFFF ); */
-         /* 	    fprintf( stderr, "set index of %c (%x) to %d\n", child->letter, */
-         /* 		     child, child->index ); */
-      }
-   }
-   
-   for ( child = edge->children; child; child = child->next ) {
-      firstIndex = index_children( child, firstIndex );
-   }
-   return firstIndex;
-}
-
-void write_child( array_edge* mainArray, tree_edge* child ) {
-   if ( child ) {
-      array_edge* entry = &mainArray[child->index];
-      unsigned char bits = 0;
-      unsigned long childIndex
-      = (child->children!=NULL)? child->children->index : 0;
-      assert( childIndex <= 0x0001FFFF );
-      
-      entry->lowByte = childIndex & 0x000000FF;
-      entry->highByte = (childIndex>>8) & 0x000000FF;
-      
-      bits = CharToTile(child->letter) & LETTERMASK;
-      
-      if ( childIndex & 0x00010000 ) {
-         bits |= LASTBITMASK;
-      }
-      if ( child->terminal ) {
-         bits |= ACCEPTINGMASK;
-      }
-      if ( child->next == NULL ) {
-         bits |= LASTEDGEMASK;
-      }
-      entry->bits = bits;
-   }
-}
-
-void write_children( array_edge* mainArray, tree_edge* edge ) {
-   tree_edge* child;
-   for ( child = edge->children; child; child = child->next ) {    
-      write_child( mainArray, child );
-      write_children( mainArray, child );
-      
-      // gather some stats
-      /* 	if ( child->index != 0 ) { */
-      /* 	    diff = edge->index - child->index; */
-      /* 	    if ( diff > largestDiff ) { */
-      /* 		largestDiff = diff; */
-      /* 	    } */
-      /* 	    if ( diff < smallestDiff ) { */
-      /* 		smallestDiff = diff;  */
-      /* 	    } */
-      /* 	} */
-      
-   }
-}
-
-//////////////////////////////////////////////////////////////////////////////
-// write_as_pdb and helpers
-//////////////////////////////////////////////////////////////////////////////
-
-void write_pdb_record_data( array_edge* edges, unsigned long startCount,
-                           unsigned long count ) {
-   unsigned long i;
-   for ( i = startCount; i < startCount + count; ++i ) {
-      fwrite( &edges[i], sizeof(array_edge), 1, stdout );
-   }
-}
-
-// I *think* that the upper bound on this is 0xFFFF/edgesize minus enough that
-// I can add edges out to the end of the subarray in which the line falls
-// can be accomodated -- which I guess is about 32-1-1 (minus one because
-// blanks take up one of the 32 slots though they don't appear in DAWGs,
-// and minus another because the boundary must appear after at least the
-// first or we just leave it there.)
-
-#define EDGES_PER_RECORD 0x3FFF
-#ifndef EDGES_PER_RECORD
-# define EDGES_PER_RECORD 0x00005528
-#endif
-
-/* Write as binary files segmented appropriately in case the target is PalmOS or
- * other platform with restricted-length databases.
- */
-void write_as_files( array_edge* edges, unsigned long edgeCount,
-                    char* fileNameBase ) {
-   unsigned long firstUnhousedEdge = 0;
-   short numEdgesThisFile;
-   boolean exitNext = false;
-   /*     unsigned long prevEdgeCount; */
-   /*     unsigned long curOffset = 0; */
-   short fileNum;
-   
-   for ( fileNum = 0; !exitNext; ++fileNum ) {
-      unsigned long lastEdge;
-      char buf[40];
-      FILE* dawgOutF;
-      unsigned long firstEdgeThisFile = 0;
-      
-      /* from the first edge not yet in a record, go forward EDGES_PER_RECORD
-       edges, and than march forward further until the current subarray is
-       finished. */
-      lastEdge = firstUnhousedEdge + EDGES_PER_RECORD - 1;
-      if ( lastEdge + 1 >= edgeCount ) {
-         lastEdge = edgeCount - 1;
-         assert( (edges[lastEdge].bits & LASTEDGEMASK) );
-         exitNext = true;
-      }
-      while ( (edges[lastEdge].bits & LASTEDGEMASK) == 0 ) {
-         ++lastEdge;
-      }
-      
-      numEdgesThisFile = lastEdge - firstUnhousedEdge + 1;
-      
-      sprintf( buf, "%s_%d.bin", fileNameBase, fileNum );
-      dawgOutF = fopen( buf, "wb" );
-      fwrite( &edges[firstUnhousedEdge], sizeof(array_edge), 
-             numEdgesThisFile, dawgOutF );
-      fclose( dawgOutF );
-      
-      fprintf( stderr, "wrote edges from %ld to %ld to file %s\n",
-              firstUnhousedEdge, firstUnhousedEdge+numEdgesThisFile, buf );
-      
-      firstUnhousedEdge = lastEdge + 1;
-   }
-   
-   fprintf( stderr, "%ld edges yielded %d records of up to %ld edges each\n",
-           edgeCount, fileNum, (long)EDGES_PER_RECORD );
-   
-} // write_as_files
-
-/******************************************************************************
- * Read in a file of letters, one per line, whose position in the file will
- * determine the translation from char to Tile when the dawg is written out.
- * If no such file is passed in, we'll create our own based on the ascii order
- * of those chars we see in processing the dictionary.  If one is passed in,
- * we'll use it, but we'll fail if we encounter a letter not on the list.
- *
- * Also, for faster lookup of Tile values we maintain a second table mapping
- * chars to tiles.  'A' might map to 1, A-umlaut to 2, etc., if 0 is the blank
- * char
- *****************************************************************************/
-void initTables() {
-   memset( gOrderTable, 0, 32*sizeof(*gOrderTable) );
-   memset( gLookupTable, -1, 256*sizeof(*gLookupTable) );
-} // initTables
-
-void readInTables( char* orderTableFile ) {
-   unsigned char ch = 0;
-   FILE* f = fopen( orderTableFile, "rb" );
-   assert( f );
-   
-   gNumUniqueTiles = 0;
-   while ( fscanf( f, "%c\n", &ch ) != EOF ) {
-      assert( gNumUniqueTiles <= 32 );
-      assert( ch < 255 );
-      assert( gOrderTable[gNumUniqueTiles].ch == 0 );
-      gOrderTable[gNumUniqueTiles].ch = ch;
-      gLookupTable[ch] = gNumUniqueTiles;
-      ++gNumUniqueTiles;
-   }
-   fclose( f );
-   
-} // readInTables
-
-/******************************************************************************
- *
- *****************************************************************************/
-static void remember( unsigned char* c ) {
-   signed short tile = gLookupTable[*c];
-   assert( gOrderTableFileName != NULL );
-   if ( tile == -1 ) {
-      fprintf( stderr, "ERROR: unexpected character '%c' (0x%x)\n",
-              *c, (short)*c );
-      exit(1);
-   }
-   assert( tile < 32 );
-   *c = tile;
-} // remember
-
-/******************************************************************************
- *
- *****************************************************************************/
-TileChar CharToTile( unsigned char ch ) {
-   return ch;
-   /*      assert( gLookupTable[ch] < 32 ); */
-   /*      return (Tile)gLookupTable[ch]; */
-} // CharToTile
-
-static short fileSize( char* fileName ) {
-   short result;
-   FILE* f = fopen( fileName, "rb" );
-   assert( f );
-   if ( fseek( f, 0L, SEEK_END ) != 0 ) {
-      fprintf( stderr, "error from fseek\n" );
-      exit(1);
-   }
-   result = ftell( f );
-   fclose( f );
-   return (short)result;
-} // fileSize
-
-//////////////////////////////////////////////////////////////////////////////
-// usage
-//////////////////////////////////////////////////////////////////////////////
-void usage( char* progName ) {
-   fprintf( stderr, 
-           "USAGE: %s\n"
-           "   [-m<maxLength>]\n"
-           "   [-v] (verbose) \n"
-   /* 	     "   [-t char-order-table-file] \n" */
-   /* 	     "   [-n <pdbName>] \n" */
-           "   <word_list >dawg_file\n",
-           progName );
-   exit( 1 );
-}
 
 @implementation DDConverter
 
@@ -702,8 +409,10 @@ void usage( char* progName ) {
 
 -(void)run
 {
-   dawg_converter( "/Users/MacServer/tmp/dawg/Dict2Dawg/sowpods.txt" );
-//   NSString* dict_path_ = @"/Users/MacServer/tmp/dawg/Dict2Dawg/dawg.bin";
+//   dawg_converter( "/Users/MacServer/tmp/dawg/Dict2Dawg/sowpods.txt" );
+   dawg_converter2( "/Users/vgor/sowpods1.bin.dwg", "/Users/vgor/sowpods2.bin" );
+
+   //   NSString* dict_path_ = @"/Users/MacServer/tmp/dawg/Dict2Dawg/dawg.bin";
 //
 //   Dict* dict_ = new Dict();
 //

@@ -792,15 +792,14 @@ static void merge_dawg (char *filename)
 -(void)run
 {
 //   dawg_converter( "/Users/vgor/Player.txt", "/Users/vgor/sowpods1.bin" );
+
    Dict* dict_ = new Dict();
-
-   bool res_ = dict_->load( "/Users/vgor/sowpods1.bin.dwg" );
-
+   bool res_ = dict_->load( "/Users/vgor/dawg.bin" );
    NSLog( @"dict_->load: %d", res_ );
 
-//   NSLog( @"contains: %d", dict_->contains( "abacterial" ) );
-//   NSLog( @"contains: %d", dict_->contains( "RIGOROUSNESSES" ) );
-//   NSLog( @"contains: %d", dict_->contains( "RIJSTAFELS" ) );
+   NSLog( @"contains: %d", dict_->contains( "AAL" ) );
+   NSLog( @"contains: %d", dict_->contains( "RIGOROUSNESSES" ) );
+   NSLog( @"contains: %d", dict_->contains( "RIJSTAFELS" ) );
 }
 
 +(void)run
