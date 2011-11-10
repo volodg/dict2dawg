@@ -1,0 +1,304 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B0DD5A6146C0C6700E5DC1C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0DD5A5146C0C6700E5DC1C /* Foundation.framework */; };
+		1B0DD5A9146C0C6700E5DC1C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5A8146C0C6700E5DC1C /* main.m */; };
+		1B0DD5AD146C0C6700E5DC1C /* Dict2Dawg.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1B0DD5AC146C0C6700E5DC1C /* Dict2Dawg.1 */; };
+		1B0DD5B8146C0DB800E5DC1C /* Dict.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5B7146C0DB800E5DC1C /* Dict.mm */; };
+		1B0DD5C2146C0EAB00E5DC1C /* TileRepo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5C1146C0EAB00E5DC1C /* TileRepo.mm */; };
+		1B0DD5C4146C0EDC00E5DC1C /* MoveInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5C3146C0EDC00E5DC1C /* MoveInfo.mm */; };
+		1B0DD5CF146C1E7400E5DC1C /* DDConverter2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DD5CE146C1E7400E5DC1C /* DDConverter2.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1B0DD59F146C0C6700E5DC1C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				1B0DD5AD146C0C6700E5DC1C /* Dict2Dawg.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1B0DD5A1146C0C6700E5DC1C /* Dict2Dawg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Dict2Dawg; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B0DD5A5146C0C6700E5DC1C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1B0DD5A8146C0C6700E5DC1C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1B0DD5AB146C0C6700E5DC1C /* Dict2Dawg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dict2Dawg-Prefix.pch"; sourceTree = "<group>"; };
+		1B0DD5AC146C0C6700E5DC1C /* Dict2Dawg.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Dict2Dawg.1; sourceTree = "<group>"; };
+		1B0DD5B3146C0CA100E5DC1C /* DDConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDConverter.h; sourceTree = "<group>"; };
+		1B0DD5B4146C0CA100E5DC1C /* DDConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DDConverter.mm; sourceTree = "<group>"; };
+		1B0DD5B6146C0DB800E5DC1C /* Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dict.h; sourceTree = "<group>"; };
+		1B0DD5B7146C0DB800E5DC1C /* Dict.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Dict.mm; sourceTree = "<group>"; };
+		1B0DD5B9146C0DD600E5DC1C /* datastructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datastructs.h; sourceTree = "<group>"; };
+		1B0DD5BA146C0DED00E5DC1C /* globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globals.h; sourceTree = "<group>"; };
+		1B0DD5BB146C0E0C00E5DC1C /* MoveInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveInfo.h; sourceTree = "<group>"; };
+		1B0DD5BC146C0E2700E5DC1C /* TileRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileRepo.h; sourceTree = "<group>"; };
+		1B0DD5BD146C0E3300E5DC1C /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
+		1B0DD5BE146C0E4700E5DC1C /* GameGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameGrid.h; sourceTree = "<group>"; };
+		1B0DD5BF146C0E5800E5DC1C /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		1B0DD5C0146C0E6500E5DC1C /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		1B0DD5C1146C0EAB00E5DC1C /* TileRepo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TileRepo.mm; sourceTree = "<group>"; };
+		1B0DD5C3146C0EDC00E5DC1C /* MoveInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveInfo.mm; sourceTree = "<group>"; };
+		1B0DD5CD146C1E7400E5DC1C /* DDConverter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDConverter2.h; sourceTree = "<group>"; };
+		1B0DD5CE146C1E7400E5DC1C /* DDConverter2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DDConverter2.mm; sourceTree = "<group>"; };
+		1B0DD5D1146C1F4800E5DC1C /* copyr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = copyr.h; sourceTree = "<group>"; };
+		1B0DD5D2146C1F5900E5DC1C /* grope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = grope.h; sourceTree = "<group>"; };
+		1B0DD5D3146C1FA200E5DC1C /* dawg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dawg.h; sourceTree = "<group>"; };
+		1B0DD5D4146C1FBA00E5DC1C /* print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = print.c; sourceTree = "<group>"; };
+		1B0DD5D6146C1FC200E5DC1C /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = init.c; sourceTree = "<group>"; };
+		1B0DD5D8146C1FC900E5DC1C /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1B0DD59E146C0C6700E5DC1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0DD5A6146C0C6700E5DC1C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1B0DD596146C0C6700E5DC1C = {
+			isa = PBXGroup;
+			children = (
+				1B0DD5A7146C0C6700E5DC1C /* Dict2Dawg */,
+				1B0DD5A4146C0C6700E5DC1C /* Frameworks */,
+				1B0DD5A2146C0C6700E5DC1C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1B0DD5A2146C0C6700E5DC1C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1B0DD5A1146C0C6700E5DC1C /* Dict2Dawg */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1B0DD5A4146C0C6700E5DC1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B0DD5A5146C0C6700E5DC1C /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1B0DD5A7146C0C6700E5DC1C /* Dict2Dawg */ = {
+			isa = PBXGroup;
+			children = (
+				1B0DD5C5146C112300E5DC1C /* ThirdParty */,
+				1B0DD5B3146C0CA100E5DC1C /* DDConverter.h */,
+				1B0DD5B4146C0CA100E5DC1C /* DDConverter.mm */,
+				1B0DD5CD146C1E7400E5DC1C /* DDConverter2.h */,
+				1B0DD5CE146C1E7400E5DC1C /* DDConverter2.mm */,
+				1B0DD5D1146C1F4800E5DC1C /* copyr.h */,
+				1B0DD5D3146C1FA200E5DC1C /* dawg.h */,
+				1B0DD5D2146C1F5900E5DC1C /* grope.h */,
+				1B0DD5D6146C1FC200E5DC1C /* init.c */,
+				1B0DD5D8146C1FC900E5DC1C /* utils.c */,
+				1B0DD5D4146C1FBA00E5DC1C /* print.c */,
+				1B0DD5A8146C0C6700E5DC1C /* main.m */,
+				1B0DD5AC146C0C6700E5DC1C /* Dict2Dawg.1 */,
+				1B0DD5AA146C0C6700E5DC1C /* Supporting Files */,
+			);
+			path = Dict2Dawg;
+			sourceTree = "<group>";
+		};
+		1B0DD5AA146C0C6700E5DC1C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1B0DD5AB146C0C6700E5DC1C /* Dict2Dawg-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1B0DD5C5146C112300E5DC1C /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				1B0DD5BF146C0E5800E5DC1C /* constants.h */,
+				1B0DD5BA146C0DED00E5DC1C /* globals.h */,
+				1B0DD5B9146C0DD600E5DC1C /* datastructs.h */,
+				1B0DD5BE146C0E4700E5DC1C /* GameGrid.h */,
+				1B0DD5C0146C0E6500E5DC1C /* Card.h */,
+				1B0DD5BD146C0E3300E5DC1C /* Tile.h */,
+				1B0DD5BB146C0E0C00E5DC1C /* MoveInfo.h */,
+				1B0DD5C3146C0EDC00E5DC1C /* MoveInfo.mm */,
+				1B0DD5BC146C0E2700E5DC1C /* TileRepo.h */,
+				1B0DD5C1146C0EAB00E5DC1C /* TileRepo.mm */,
+				1B0DD5B6146C0DB800E5DC1C /* Dict.h */,
+				1B0DD5B7146C0DB800E5DC1C /* Dict.mm */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1B0DD5A0146C0C6700E5DC1C /* Dict2Dawg */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B0DD5B0146C0C6700E5DC1C /* Build configuration list for PBXNativeTarget "Dict2Dawg" */;
+			buildPhases = (
+				1B0DD59D146C0C6700E5DC1C /* Sources */,
+				1B0DD59E146C0C6700E5DC1C /* Frameworks */,
+				1B0DD59F146C0C6700E5DC1C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dict2Dawg;
+			productName = Dict2Dawg;
+			productReference = 1B0DD5A1146C0C6700E5DC1C /* Dict2Dawg */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1B0DD598146C0C6700E5DC1C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 1B0DD59B146C0C6700E5DC1C /* Build configuration list for PBXProject "Dict2Dawg" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1B0DD596146C0C6700E5DC1C;
+			productRefGroup = 1B0DD5A2146C0C6700E5DC1C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1B0DD5A0146C0C6700E5DC1C /* Dict2Dawg */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1B0DD59D146C0C6700E5DC1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0DD5A9146C0C6700E5DC1C /* main.m in Sources */,
+				1B0DD5B8146C0DB800E5DC1C /* Dict.mm in Sources */,
+				1B0DD5C2146C0EAB00E5DC1C /* TileRepo.mm in Sources */,
+				1B0DD5C4146C0EDC00E5DC1C /* MoveInfo.mm in Sources */,
+				1B0DD5CF146C1E7400E5DC1C /* DDConverter2.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1B0DD5AE146C0C6700E5DC1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1B0DD5AF146C0C6700E5DC1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1B0DD5B1146C0C6700E5DC1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dict2Dawg/Dict2Dawg-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1B0DD5B2146C0C6700E5DC1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dict2Dawg/Dict2Dawg-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1B0DD59B146C0C6700E5DC1C /* Build configuration list for PBXProject "Dict2Dawg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B0DD5AE146C0C6700E5DC1C /* Debug */,
+				1B0DD5AF146C0C6700E5DC1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B0DD5B0146C0C6700E5DC1C /* Build configuration list for PBXNativeTarget "Dict2Dawg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B0DD5B1146C0C6700E5DC1C /* Debug */,
+				1B0DD5B2146C0C6700E5DC1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1B0DD598146C0C6700E5DC1C /* Project object */;
+}
