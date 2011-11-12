@@ -21,6 +21,8 @@ void DawgNode::unserialize( FILE* fp )
 
 uint32_t Dawg2Dict::next_node_for_char( uint32_t curr_node_index_, char letter_, bool& out_last_in_word_ ) const
 {
+   out_last_in_word_ = false;
+
    DawgNode curr_node_ = nodes.at( curr_node_index_ );
    while ( !curr_node_.last_in_list && curr_node_.letter != letter_ )
    {
@@ -37,14 +39,9 @@ uint32_t Dawg2Dict::next_node_for_char( uint32_t curr_node_index_, char letter_,
    return result_;
 }
 
-//bool isLastLetterInWord(  )
-
 bool Dawg2Dict::contains( const std::string& str_ ) const
 {
    const size_t str_size_ = str_.size();
-
-   if ( str_size_ < 2 )
-      return false;
 
    int curr_node_index_ = 0;
    bool last_in_word = false;

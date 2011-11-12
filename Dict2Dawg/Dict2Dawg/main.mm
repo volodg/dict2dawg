@@ -24,14 +24,34 @@ void trimRight( std::string& str,
 const std::set< std::string > setWithDict( const std::string& file );
 const std::set< std::string > setWithDict( const std::string& file )
 {
-   std::ifstream ifs( "/Users/vgor/Player.txt" );
+   std::ifstream ifs( file.c_str() );
 
    std::set< std::string > result;
    std::string temp;
    while( getline( ifs, temp ) )
    {
       trimRight( temp, "\n\r");
-      result.insert( temp );
+
+      if ( temp.size() != 0 )
+         result.insert( temp );
+   }
+
+   return result;
+}
+
+const std::vector< std::string > vectorWithDict( const std::string& file );
+const std::vector< std::string > vectorWithDict( const std::string& file )
+{
+   std::ifstream ifs( file.c_str() );
+
+   std::vector< std::string > result;
+   std::string temp;
+   while( getline( ifs, temp ) )
+   {
+      trimRight( temp, "\n\r");
+
+      if ( temp.size() != 0 )
+         result.push_back( temp );
    }
 
    return result;
@@ -40,22 +60,25 @@ const std::set< std::string > setWithDict( const std::string& file )
 void testAllDict( const Dawg2Dict& dict );
 void testAllDict( const Dawg2Dict& dict )
 {
-   std::ifstream ifs( "/Users/vgor/Player.txt" );
+   std::vector< std::string > sowpods = vectorWithDict( std::string( "/Users/vgor/Player.txt" ) );
+   std::vector< std::string >::iterator it = sowpods.begin();
 
-   std::string temp;
-   while( getline( ifs, temp ) )
+   NSLog( @"start test" );
+   while( it != sowpods.end() )
    {
-      trimRight( temp, "\n\r");
-      if ( !dict.contains( temp ) )
+      if ( !dict.contains( *it ) )
       {
-         NSLog( @"error: say that not contains: %s", temp.c_str() );
+         NSLog( @"error: say that not contains: %s", (*it).c_str() );
          break;
       }
       else
       {
-         NSLog( @"OK: %s", temp.c_str() );
+//         NSLog( @"OK: %s", temp.c_str() );
       }
+
+      ++it;
    }
+   NSLog( @"end test" );
 }
 
 void testDifferenceDict( const Dawg2Dict& dict );
@@ -68,11 +91,20 @@ void testDifferenceDict( const Dawg2Dict& dict )
 
    set_difference ( sowpodsDict.begin(), sowpodsDict.end()
                    , playerDict.begin(), playerDict.end()
-                   , result.begin());
-   
-   for (  )
+                   , std::inserter( result, result.end() ) );
+
+   std::vector< std::string >::iterator it_ = result.begin();
+   for ( ; it_ != result.end(); ++it_ )
    {
-      
+      if ( dict.contains( *it_ ) )
+      {
+         NSLog( @"error: say that contains: %s", (*it_).c_str() );
+         break;
+      }
+      else
+      {
+         //NSLog( @"OK: %s", temp.c_str() );
+      }
    }
 }
 
@@ -80,7 +112,7 @@ int main (int argc, const char * argv[])
 {
    @autoreleasepool
    {
-      NSLog(@"Hello, World: %lu", sizeof(uint32_t) );
+      NSLog( @"Hello, World" );
 //      dict2dawg_converter( "/Users/vgor/Player.txt" );
 
       Dawg2Dict dict;
@@ -89,8 +121,10 @@ int main (int argc, const char * argv[])
 
       //GTODO test words from origin dict
       testDifferenceDict( dict );
+      testAllDict( dict );
 
       NSLog( @"test done" );
+//      NSLog( @"tst0: %d", dict.contains( std::string("AALS") ) );
 //      NSLog( @"tst0: %d", dict.contains( std::string("/Users/vgor/Traditional_Dawg_For_Word-List.dat") ) );
 //      NSLog( @"tst1: %d", dict.contains( std::string("ZZZ") ) );
 //      NSLog( @"tst1: %d", dict.contains( std::string("apple") ) );

@@ -47,7 +47,6 @@
 		65585815146EB72C0034F4BA /* TileRepo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TileRepo.mm; sourceTree = "<group>"; };
 		6558581B146EB8D60034F4BA /* Dawg2Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dawg2Dict.h; sourceTree = "<group>"; };
 		6558581C146EB8D60034F4BA /* Dawg2Dict.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Dawg2Dict.mm; sourceTree = "<group>"; };
-		65B3FD7E146EAE400025F260 /* Traditional_Dawg_For_Word-List.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Traditional_Dawg_For_Word-List.dat"; path = "../../../Traditional_Dawg_For_Word-List.dat"; sourceTree = "<group>"; };
 		65B3FD81146EB50C0025F260 /* dict2dawg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dict2dawg.m; sourceTree = "<group>"; };
 		65B3FD83146EB5170025F260 /* dict2dawg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dict2dawg.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,7 +103,6 @@
 		1B0DD5AA146C0C6700E5DC1C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				65B3FD7E146EAE400025F260 /* Traditional_Dawg_For_Word-List.dat */,
 				1B0DD5AB146C0C6700E5DC1C /* Dict2Dawg-Prefix.pch */,
 			);
 			name = "Supporting Files";
