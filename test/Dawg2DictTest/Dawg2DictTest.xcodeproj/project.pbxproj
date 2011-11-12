@@ -14,6 +14,9 @@
 		655858A3146F01560034F4BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858A2146F01560034F4BA /* main.m */; };
 		655858B5146F01C00034F4BA /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655858B4146F01C00034F4BA /* GHUnitIOS.framework */; };
 		655858B8146F03020034F4BA /* Dawg2DictTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858B7146F03020034F4BA /* Dawg2DictTest.m */; };
+		655858BD146F056A0034F4BA /* error_dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655858BA146F056A0034F4BA /* error_dict.txt */; };
+		655858BE146F056A0034F4BA /* ok_dict.dawg.dat in Resources */ = {isa = PBXBuildFile; fileRef = 655858BB146F056A0034F4BA /* ok_dict.dawg.dat */; };
+		655858BF146F056A0034F4BA /* ok_dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655858BC146F056A0034F4BA /* ok_dict.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		655858A4146F01560034F4BA /* Dawg2DictTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dawg2DictTest-Prefix.pch"; sourceTree = "<group>"; };
 		655858B4146F01C00034F4BA /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../../frameworks/GHUnitIOS.framework; sourceTree = "<group>"; };
 		655858B7146F03020034F4BA /* Dawg2DictTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dawg2DictTest.m; sourceTree = "<group>"; };
+		655858BA146F056A0034F4BA /* error_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = error_dict.txt; path = ../../resources/error_dict.txt; sourceTree = "<group>"; };
+		655858BB146F056A0034F4BA /* ok_dict.dawg.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = ok_dict.dawg.dat; path = ../../resources/ok_dict.dawg.dat; sourceTree = "<group>"; };
+		655858BC146F056A0034F4BA /* ok_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ok_dict.txt; path = ../../resources/ok_dict.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +57,7 @@
 				655858B3146F01620034F4BA /* Dependencies */,
 				65585895146F01560034F4BA /* Frameworks */,
 				65585893146F01560034F4BA /* Products */,
+				655858B9146F053A0034F4BA /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +105,16 @@
 			children = (
 			);
 			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		655858B9146F053A0034F4BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				655858BA146F056A0034F4BA /* error_dict.txt */,
+				655858BB146F056A0034F4BA /* ok_dict.dawg.dat */,
+				655858BC146F056A0034F4BA /* ok_dict.txt */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +168,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				655858A1146F01560034F4BA /* InfoPlist.strings in Resources */,
+				655858BD146F056A0034F4BA /* error_dict.txt in Resources */,
+				655858BE146F056A0034F4BA /* ok_dict.dawg.dat in Resources */,
+				655858BF146F056A0034F4BA /* ok_dict.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
