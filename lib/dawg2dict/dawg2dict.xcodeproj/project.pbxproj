@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		65585852146EFE8A0034F4BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65585851146EFE8A0034F4BA /* Foundation.framework */; };
 		65585864146EFF900034F4BA /* Dawg2Dict.h in Headers */ = {isa = PBXBuildFile; fileRef = 65585862146EFF900034F4BA /* Dawg2Dict.h */; };
-		65585865146EFF900034F4BA /* Dawg2Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = 65585863146EFF900034F4BA /* Dawg2Dict.m */; };
+		65585865146EFF900034F4BA /* Dawg2Dict.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65585863146EFF900034F4BA /* Dawg2Dict.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,7 +17,7 @@
 		65585851146EFE8A0034F4BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		65585855146EFE8B0034F4BA /* dawg2dict-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dawg2dict-Prefix.pch"; sourceTree = "<group>"; };
 		65585862146EFF900034F4BA /* Dawg2Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dawg2Dict.h; sourceTree = "<group>"; };
-		65585863146EFF900034F4BA /* Dawg2Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dawg2Dict.m; sourceTree = "<group>"; };
+		65585863146EFF900034F4BA /* Dawg2Dict.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Dawg2Dict.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 			children = (
 				65585854146EFE8B0034F4BA /* Supporting Files */,
 				65585862146EFF900034F4BA /* Dawg2Dict.h */,
-				65585863146EFF900034F4BA /* Dawg2Dict.m */,
+				65585863146EFF900034F4BA /* Dawg2Dict.mm */,
 			);
 			path = dawg2dict;
 			sourceTree = "<group>";
@@ -136,7 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65585865146EFF900034F4BA /* Dawg2Dict.m in Sources */,
+				65585865146EFF900034F4BA /* Dawg2Dict.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
