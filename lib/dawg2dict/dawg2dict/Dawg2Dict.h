@@ -12,7 +12,7 @@ public:
    bool last_in_list;
    int32_t next_node;
 public:
-   void unserialize( FILE* fp );
+   bool unserialize( FILE* fp );
 };
 
 //GTODO fails on contains( "ZZZ" )

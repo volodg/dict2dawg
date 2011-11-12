@@ -35,7 +35,7 @@
 		65585843146EFE8A0034F4BA = {
 			isa = PBXGroup;
 			children = (
-				65585853146EFE8A0034F4BA /* dawg2dict */,
+				65585853146EFE8A0034F4BA /* Dawg2Dict */,
 				65585850146EFE8A0034F4BA /* Frameworks */,
 				6558584F146EFE8A0034F4BA /* Products */,
 			);
@@ -57,13 +57,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		65585853146EFE8A0034F4BA /* dawg2dict */ = {
+		65585853146EFE8A0034F4BA /* Dawg2Dict */ = {
 			isa = PBXGroup;
 			children = (
 				65585854146EFE8B0034F4BA /* Supporting Files */,
 				65585862146EFF900034F4BA /* Dawg2Dict.h */,
 				65585863146EFF900034F4BA /* Dawg2Dict.mm */,
 			);
+			name = Dawg2Dict;
 			path = dawg2dict;
 			sourceTree = "<group>";
 		};
@@ -114,7 +115,7 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = 65585848146EFE8A0034F4BA /* Build configuration list for PBXProject "dawg2dict" */;
+			buildConfigurationList = 65585848146EFE8A0034F4BA /* Build configuration list for PBXProject "Dawg2Dict" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -210,7 +211,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		65585848146EFE8A0034F4BA /* Build configuration list for PBXProject "dawg2dict" */ = {
+		65585848146EFE8A0034F4BA /* Build configuration list for PBXProject "Dawg2Dict" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65585859146EFE8B0034F4BA /* Debug */,
@@ -226,6 +227,7 @@
 				6558585D146EFE8B0034F4BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

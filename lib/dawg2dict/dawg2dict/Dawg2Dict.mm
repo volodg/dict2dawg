@@ -5,18 +5,20 @@
 using std::string;
 using std::vector;
 
-void DawgNode::unserialize( FILE* fp )
+bool DawgNode::unserialize( FILE* fp )
 {
    uint32_t bin_node_ = 0;
    if (fread(&bin_node_, sizeof(uint32_t), 1, fp) != 1) {
       NSLog( @"DawgNode::unserialize: read error." );
-      return;
+      return false;
    }
 
    letter       = (bin_node_ & 0x3F) + 'A';
    next_node    = ( bin_node_ >> 8 ) - 1;
    last_in_word = bin_node_ & 0x80;
    last_in_list = bin_node_ & 0x40;
+
+   return true;
 }
 
 uint32_t Dawg2Dict::next_node_for_char( uint32_t curr_node_index_, char letter_, bool& out_last_in_word_ ) const
@@ -74,7 +76,8 @@ bool Dawg2Dict::load ( const std::string& fname )
    }
    nodes.resize(nsize);
    for (uint i=0; i<nsize; i++) {
-      nodes[i].unserialize(fp);
+      if ( !nodes[i].unserialize(fp) )
+         break;
    }
    fclose(fp);
    return true;
