@@ -13,11 +13,22 @@
 		655858A1146F01560034F4BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6558589F146F01560034F4BA /* InfoPlist.strings */; };
 		655858A3146F01560034F4BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858A2146F01560034F4BA /* main.m */; };
 		655858B5146F01C00034F4BA /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655858B4146F01C00034F4BA /* GHUnitIOS.framework */; };
-		655858B8146F03020034F4BA /* Dawg2DictTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858B7146F03020034F4BA /* Dawg2DictTest.m */; };
+		655858B8146F03020034F4BA /* Dawg2DictTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 655858B7146F03020034F4BA /* Dawg2DictTest.mm */; };
 		655858BD146F056A0034F4BA /* error_dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655858BA146F056A0034F4BA /* error_dict.txt */; };
-		655858BE146F056A0034F4BA /* ok_dict.dawg.dat in Resources */ = {isa = PBXBuildFile; fileRef = 655858BB146F056A0034F4BA /* ok_dict.dawg.dat */; };
+		655858BE146F056A0034F4BA /* ok_dict.dawg in Resources */ = {isa = PBXBuildFile; fileRef = 655858BB146F056A0034F4BA /* ok_dict.dawg */; };
 		655858BF146F056A0034F4BA /* ok_dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655858BC146F056A0034F4BA /* ok_dict.txt */; };
+		655858D1146F06BD0034F4BA /* libdawg2dict.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 655858D0146F06AB0034F4BA /* libdawg2dict.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		655858CF146F06AB0034F4BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 655858C8146F06AB0034F4BA /* Dawg2Dict.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6558584E146EFE8A0034F4BA;
+			remoteInfo = dawg2dict;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		65585892146F01560034F4BA /* Dawg2DictTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dawg2DictTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,10 +40,11 @@
 		655858A2146F01560034F4BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		655858A4146F01560034F4BA /* Dawg2DictTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dawg2DictTest-Prefix.pch"; sourceTree = "<group>"; };
 		655858B4146F01C00034F4BA /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../../frameworks/GHUnitIOS.framework; sourceTree = "<group>"; };
-		655858B7146F03020034F4BA /* Dawg2DictTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dawg2DictTest.m; sourceTree = "<group>"; };
+		655858B7146F03020034F4BA /* Dawg2DictTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Dawg2DictTest.mm; sourceTree = "<group>"; };
 		655858BA146F056A0034F4BA /* error_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = error_dict.txt; path = ../../resources/error_dict.txt; sourceTree = "<group>"; };
-		655858BB146F056A0034F4BA /* ok_dict.dawg.dat */ = {isa = PBXFileReference; lastKnownFileType = file; name = ok_dict.dawg.dat; path = ../../resources/ok_dict.dawg.dat; sourceTree = "<group>"; };
+		655858BB146F056A0034F4BA /* ok_dict.dawg */ = {isa = PBXFileReference; lastKnownFileType = file; name = ok_dict.dawg; path = ../../resources/ok_dict.dawg; sourceTree = "<group>"; };
 		655858BC146F056A0034F4BA /* ok_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ok_dict.txt; path = ../../resources/ok_dict.txt; sourceTree = "<group>"; };
+		655858C8146F06AB0034F4BA /* Dawg2Dict.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Dawg2Dict.xcodeproj; path = ../../lib/dawg2dict/Dawg2Dict.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655858D1146F06BD0034F4BA /* libdawg2dict.a in Frameworks */,
 				65585897146F01560034F4BA /* UIKit.framework in Frameworks */,
 				65585899146F01560034F4BA /* Foundation.framework in Frameworks */,
 				6558589B146F01560034F4BA /* CoreGraphics.framework in Frameworks */,
@@ -83,7 +96,7 @@
 		6558589C146F01560034F4BA /* Dawg2DictTest */ = {
 			isa = PBXGroup;
 			children = (
-				655858B7146F03020034F4BA /* Dawg2DictTest.m */,
+				655858B7146F03020034F4BA /* Dawg2DictTest.mm */,
 				6558589D146F01560034F4BA /* Supporting Files */,
 			);
 			path = Dawg2DictTest;
@@ -103,6 +116,7 @@
 		655858B3146F01620034F4BA /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				655858C8146F06AB0034F4BA /* Dawg2Dict.xcodeproj */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -111,10 +125,18 @@
 			isa = PBXGroup;
 			children = (
 				655858BA146F056A0034F4BA /* error_dict.txt */,
-				655858BB146F056A0034F4BA /* ok_dict.dawg.dat */,
+				655858BB146F056A0034F4BA /* ok_dict.dawg */,
 				655858BC146F056A0034F4BA /* ok_dict.txt */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		655858C9146F06AB0034F4BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				655858D0146F06AB0034F4BA /* libdawg2dict.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,12 +177,28 @@
 			mainGroup = 65585887146F01560034F4BA;
 			productRefGroup = 65585893146F01560034F4BA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 655858C9146F06AB0034F4BA /* Products */;
+					ProjectRef = 655858C8146F06AB0034F4BA /* Dawg2Dict.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				65585891146F01560034F4BA /* Dawg2DictTest */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		655858D0146F06AB0034F4BA /* libdawg2dict.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libdawg2dict.a;
+			remoteRef = 655858CF146F06AB0034F4BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		65585890146F01560034F4BA /* Resources */ = {
@@ -169,7 +207,7 @@
 			files = (
 				655858A1146F01560034F4BA /* InfoPlist.strings in Resources */,
 				655858BD146F056A0034F4BA /* error_dict.txt in Resources */,
-				655858BE146F056A0034F4BA /* ok_dict.dawg.dat in Resources */,
+				655858BE146F056A0034F4BA /* ok_dict.dawg in Resources */,
 				655858BF146F056A0034F4BA /* ok_dict.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,7 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				655858A3146F01560034F4BA /* main.m in Sources */,
-				655858B8146F03020034F4BA /* Dawg2DictTest.m in Sources */,
+				655858B8146F03020034F4BA /* Dawg2DictTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +257,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../lib/dawg2dict;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -240,6 +279,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../lib/dawg2dict;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
