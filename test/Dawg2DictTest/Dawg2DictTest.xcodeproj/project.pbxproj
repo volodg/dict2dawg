@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		65585897146F01560034F4BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65585896146F01560034F4BA /* UIKit.framework */; };
+		65585899146F01560034F4BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65585898146F01560034F4BA /* Foundation.framework */; };
+		6558589B146F01560034F4BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6558589A146F01560034F4BA /* CoreGraphics.framework */; };
+		655858A1146F01560034F4BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6558589F146F01560034F4BA /* InfoPlist.strings */; };
+		655858A3146F01560034F4BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858A2146F01560034F4BA /* main.m */; };
+		655858A7146F01560034F4BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858A6146F01560034F4BA /* AppDelegate.m */; };
+		655858AA146F01560034F4BA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 655858A8146F01560034F4BA /* MainStoryboard.storyboard */; };
+		655858AD146F01570034F4BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858AC146F01570034F4BA /* ViewController.m */; };
+		655858B5146F01C00034F4BA /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655858B4146F01C00034F4BA /* GHUnitIOS.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		65585892146F01560034F4BA /* Dawg2DictTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dawg2DictTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65585896146F01560034F4BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		65585898146F01560034F4BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6558589A146F01560034F4BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6558589E146F01560034F4BA /* Dawg2DictTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dawg2DictTest-Info.plist"; sourceTree = "<group>"; };
+		655858A0146F01560034F4BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		655858A2146F01560034F4BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		655858A4146F01560034F4BA /* Dawg2DictTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dawg2DictTest-Prefix.pch"; sourceTree = "<group>"; };
+		655858A5146F01560034F4BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		655858A6146F01560034F4BA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		655858A9146F01560034F4BA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		655858AB146F01560034F4BA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		655858AC146F01570034F4BA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		655858B4146F01C00034F4BA /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../../frameworks/GHUnitIOS.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6558588F146F01560034F4BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65585897146F01560034F4BA /* UIKit.framework in Frameworks */,
+				65585899146F01560034F4BA /* Foundation.framework in Frameworks */,
+				6558589B146F01560034F4BA /* CoreGraphics.framework in Frameworks */,
+				655858B5146F01C00034F4BA /* GHUnitIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		65585887146F01560034F4BA = {
+			isa = PBXGroup;
+			children = (
+				6558589C146F01560034F4BA /* Dawg2DictTest */,
+				655858B3146F01620034F4BA /* Dependencies */,
+				65585895146F01560034F4BA /* Frameworks */,
+				65585893146F01560034F4BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		65585893146F01560034F4BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65585892146F01560034F4BA /* Dawg2DictTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65585895146F01560034F4BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				655858B4146F01C00034F4BA /* GHUnitIOS.framework */,
+				65585896146F01560034F4BA /* UIKit.framework */,
+				65585898146F01560034F4BA /* Foundation.framework */,
+				6558589A146F01560034F4BA /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6558589C146F01560034F4BA /* Dawg2DictTest */ = {
+			isa = PBXGroup;
+			children = (
+				655858A5146F01560034F4BA /* AppDelegate.h */,
+				655858A6146F01560034F4BA /* AppDelegate.m */,
+				655858A8146F01560034F4BA /* MainStoryboard.storyboard */,
+				655858AB146F01560034F4BA /* ViewController.h */,
+				655858AC146F01570034F4BA /* ViewController.m */,
+				6558589D146F01560034F4BA /* Supporting Files */,
+			);
+			path = Dawg2DictTest;
+			sourceTree = "<group>";
+		};
+		6558589D146F01560034F4BA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6558589E146F01560034F4BA /* Dawg2DictTest-Info.plist */,
+				6558589F146F01560034F4BA /* InfoPlist.strings */,
+				655858A2146F01560034F4BA /* main.m */,
+				655858A4146F01560034F4BA /* Dawg2DictTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		655858B3146F01620034F4BA /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		65585891146F01560034F4BA /* Dawg2DictTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 655858B0146F01570034F4BA /* Build configuration list for PBXNativeTarget "Dawg2DictTest" */;
+			buildPhases = (
+				6558588E146F01560034F4BA /* Sources */,
+				6558588F146F01560034F4BA /* Frameworks */,
+				65585890146F01560034F4BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dawg2DictTest;
+			productName = Dawg2DictTest;
+			productReference = 65585892146F01560034F4BA /* Dawg2DictTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		65585889146F01560034F4BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 6558588C146F01560034F4BA /* Build configuration list for PBXProject "Dawg2DictTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 65585887146F01560034F4BA;
+			productRefGroup = 65585893146F01560034F4BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65585891146F01560034F4BA /* Dawg2DictTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		65585890146F01560034F4BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				655858A1146F01560034F4BA /* InfoPlist.strings in Resources */,
+				655858AA146F01560034F4BA /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6558588E146F01560034F4BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				655858A3146F01560034F4BA /* main.m in Sources */,
+				655858A7146F01560034F4BA /* AppDelegate.m in Sources */,
+				655858AD146F01570034F4BA /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6558589F146F01560034F4BA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				655858A0146F01560034F4BA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		655858A8146F01560034F4BA /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				655858A9146F01560034F4BA /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		655858AE146F01570034F4BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		655858AF146F01570034F4BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		655858B1146F01570034F4BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dawg2DictTest/Dawg2DictTest-Prefix.pch";
+				INFOPLIST_FILE = "Dawg2DictTest/Dawg2DictTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		655858B2146F01570034F4BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dawg2DictTest/Dawg2DictTest-Prefix.pch";
+				INFOPLIST_FILE = "Dawg2DictTest/Dawg2DictTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6558588C146F01560034F4BA /* Build configuration list for PBXProject "Dawg2DictTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				655858AE146F01570034F4BA /* Debug */,
+				655858AF146F01570034F4BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		655858B0146F01570034F4BA /* Build configuration list for PBXNativeTarget "Dawg2DictTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				655858B1146F01570034F4BA /* Debug */,
+				655858B2146F01570034F4BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 65585889146F01560034F4BA /* Project object */;
+}
