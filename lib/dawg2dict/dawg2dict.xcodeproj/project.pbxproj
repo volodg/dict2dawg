@@ -8,15 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		65585852146EFE8A0034F4BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65585851146EFE8A0034F4BA /* Foundation.framework */; };
-		65585858146EFE8B0034F4BA /* dawg2dict.m in Sources */ = {isa = PBXBuildFile; fileRef = 65585857146EFE8B0034F4BA /* dawg2dict.m */; };
+		65585864146EFF900034F4BA /* Dawg2Dict.h in Headers */ = {isa = PBXBuildFile; fileRef = 65585862146EFF900034F4BA /* Dawg2Dict.h */; };
+		65585865146EFF900034F4BA /* Dawg2Dict.m in Sources */ = {isa = PBXBuildFile; fileRef = 65585863146EFF900034F4BA /* Dawg2Dict.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6558584E146EFE8A0034F4BA /* libdawg2dict.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdawg2dict.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65585851146EFE8A0034F4BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		65585855146EFE8B0034F4BA /* dawg2dict-Prefix.pch */ = {isa = PBXFileReference; path = "dawg2dict-Prefix.pch"; sourceTree = "<group>"; };
-		65585856146EFE8B0034F4BA /* dawg2dict.h */ = {isa = PBXFileReference; path = dawg2dict.h; sourceTree = "<group>"; };
-		65585857146EFE8B0034F4BA /* dawg2dict.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dawg2dict.m; sourceTree = "<group>"; };
+		65585855146EFE8B0034F4BA /* dawg2dict-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dawg2dict-Prefix.pch"; sourceTree = "<group>"; };
+		65585862146EFF900034F4BA /* Dawg2Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dawg2Dict.h; sourceTree = "<group>"; };
+		65585863146EFF900034F4BA /* Dawg2Dict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dawg2Dict.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +60,9 @@
 		65585853146EFE8A0034F4BA /* dawg2dict */ = {
 			isa = PBXGroup;
 			children = (
-				65585856146EFE8B0034F4BA /* dawg2dict.h */,
-				65585857146EFE8B0034F4BA /* dawg2dict.m */,
 				65585854146EFE8B0034F4BA /* Supporting Files */,
+				65585862146EFF900034F4BA /* Dawg2Dict.h */,
+				65585863146EFF900034F4BA /* Dawg2Dict.m */,
 			);
 			path = dawg2dict;
 			sourceTree = "<group>";
@@ -81,6 +82,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65585864146EFF900034F4BA /* Dawg2Dict.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65585858146EFE8B0034F4BA /* dawg2dict.m in Sources */,
+				65585865146EFF900034F4BA /* Dawg2Dict.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
