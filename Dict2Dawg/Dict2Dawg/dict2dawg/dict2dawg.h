@@ -9,6 +9,6 @@
 #ifndef Dict2Dawg_dict2dawg_h
 #define Dict2Dawg_dict2dawg_h
 
-
+int dict2dawg_converter( const char* inFileNameWithDict );
 
 #endif
