@@ -7,71 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65585852146EFE8A0034F4BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65585851146EFE8A0034F4BA /* Foundation.framework */; };
-		65585864146EFF900034F4BA /* Dawg2Dict.h in Headers */ = {isa = PBXBuildFile; fileRef = 65585862146EFF900034F4BA /* Dawg2Dict.h */; };
-		65585865146EFF900034F4BA /* Dawg2Dict.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65585863146EFF900034F4BA /* Dawg2Dict.mm */; };
+		655858E1146F08F30034F4BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655858E0146F08F30034F4BA /* Foundation.framework */; };
+		655858E7146F08F30034F4BA /* Dawg2Dict222.mm in Sources */ = {isa = PBXBuildFile; fileRef = 655858E6146F08F30034F4BA /* Dawg2Dict222.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6558584E146EFE8A0034F4BA /* libdawg2dict.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdawg2dict.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		65585851146EFE8A0034F4BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		65585855146EFE8B0034F4BA /* dawg2dict-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dawg2dict-Prefix.pch"; sourceTree = "<group>"; };
-		65585862146EFF900034F4BA /* Dawg2Dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dawg2Dict.h; sourceTree = "<group>"; };
-		65585863146EFF900034F4BA /* Dawg2Dict.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Dawg2Dict.mm; sourceTree = "<group>"; };
+		655858DD146F08F30034F4BA /* libDawg2Dict.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDawg2Dict.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		655858E0146F08F30034F4BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		655858E4146F08F30034F4BA /* Dawg2Dict-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dawg2Dict-Prefix.pch"; sourceTree = "<group>"; };
+		655858E5146F08F30034F4BA /* Dawg2Dict.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dawg2Dict.h; sourceTree = "<group>"; };
+		655858E6146F08F30034F4BA /* Dawg2Dict222.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Dawg2Dict222.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6558584B146EFE8A0034F4BA /* Frameworks */ = {
+		655858DA146F08F30034F4BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65585852146EFE8A0034F4BA /* Foundation.framework in Frameworks */,
+				655858E1146F08F30034F4BA /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		65585843146EFE8A0034F4BA = {
+		655858D2146F08F30034F4BA = {
 			isa = PBXGroup;
 			children = (
-				65585853146EFE8A0034F4BA /* Dawg2Dict */,
-				65585850146EFE8A0034F4BA /* Frameworks */,
-				6558584F146EFE8A0034F4BA /* Products */,
+				655858E2146F08F30034F4BA /* Dawg2Dict */,
+				655858DF146F08F30034F4BA /* Frameworks */,
+				655858DE146F08F30034F4BA /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		6558584F146EFE8A0034F4BA /* Products */ = {
+		655858DE146F08F30034F4BA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6558584E146EFE8A0034F4BA /* libdawg2dict.a */,
+				655858DD146F08F30034F4BA /* libDawg2Dict.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		65585850146EFE8A0034F4BA /* Frameworks */ = {
+		655858DF146F08F30034F4BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				65585851146EFE8A0034F4BA /* Foundation.framework */,
+				655858E0146F08F30034F4BA /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		65585853146EFE8A0034F4BA /* Dawg2Dict */ = {
+		655858E2146F08F30034F4BA /* Dawg2Dict */ = {
 			isa = PBXGroup;
 			children = (
-				65585854146EFE8B0034F4BA /* Supporting Files */,
-				65585862146EFF900034F4BA /* Dawg2Dict.h */,
-				65585863146EFF900034F4BA /* Dawg2Dict.mm */,
+				655858E5146F08F30034F4BA /* Dawg2Dict.h */,
+				655858E6146F08F30034F4BA /* Dawg2Dict222.mm */,
+				655858E3146F08F30034F4BA /* Supporting Files */,
 			);
-			name = Dawg2Dict;
-			path = dawg2dict;
+			path = Dawg2Dict;
 			sourceTree = "<group>";
 		};
-		65585854146EFE8B0034F4BA /* Supporting Files */ = {
+		655858E3146F08F30034F4BA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				65585855146EFE8B0034F4BA /* dawg2dict-Prefix.pch */,
+				655858E4146F08F30034F4BA /* Dawg2Dict-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -79,72 +77,71 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6558584C146EFE8A0034F4BA /* Headers */ = {
+		655858DB146F08F30034F4BA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65585864146EFF900034F4BA /* Dawg2Dict.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6558584D146EFE8A0034F4BA /* dawg2dict */ = {
+		655858DC146F08F30034F4BA /* Dawg2Dict */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6558585B146EFE8B0034F4BA /* Build configuration list for PBXNativeTarget "dawg2dict" */;
+			buildConfigurationList = 655858EA146F08F30034F4BA /* Build configuration list for PBXNativeTarget "Dawg2Dict" */;
 			buildPhases = (
-				6558584A146EFE8A0034F4BA /* Sources */,
-				6558584B146EFE8A0034F4BA /* Frameworks */,
-				6558584C146EFE8A0034F4BA /* Headers */,
+				655858D9146F08F30034F4BA /* Sources */,
+				655858DA146F08F30034F4BA /* Frameworks */,
+				655858DB146F08F30034F4BA /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = dawg2dict;
-			productName = dawg2dict;
-			productReference = 6558584E146EFE8A0034F4BA /* libdawg2dict.a */;
+			name = Dawg2Dict;
+			productName = Dawg2Dict;
+			productReference = 655858DD146F08F30034F4BA /* libDawg2Dict.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		65585845146EFE8A0034F4BA /* Project object */ = {
+		655858D4146F08F30034F4BA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = 65585848146EFE8A0034F4BA /* Build configuration list for PBXProject "Dawg2Dict" */;
+			buildConfigurationList = 655858D7146F08F30034F4BA /* Build configuration list for PBXProject "Dawg2Dict" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 65585843146EFE8A0034F4BA;
-			productRefGroup = 6558584F146EFE8A0034F4BA /* Products */;
+			mainGroup = 655858D2146F08F30034F4BA;
+			productRefGroup = 655858DE146F08F30034F4BA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6558584D146EFE8A0034F4BA /* dawg2dict */,
+				655858DC146F08F30034F4BA /* Dawg2Dict */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6558584A146EFE8A0034F4BA /* Sources */ = {
+		655858D9146F08F30034F4BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65585865146EFF900034F4BA /* Dawg2Dict.mm in Sources */,
+				655858E7146F08F30034F4BA /* Dawg2Dict222.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		65585859146EFE8B0034F4BA /* Debug */ = {
+		655858E8146F08F30034F4BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -167,7 +164,7 @@
 			};
 			name = Debug;
 		};
-		6558585A146EFE8B0034F4BA /* Release */ = {
+		655858E9146F08F30034F4BA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -184,24 +181,24 @@
 			};
 			name = Release;
 		};
-		6558585C146EFE8B0034F4BA /* Debug */ = {
+		655858EB146F08F30034F4BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/dawg2dict.dst;
+				DSTROOT = /tmp/Dawg2Dict.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "dawg2dict/dawg2dict-Prefix.pch";
+				GCC_PREFIX_HEADER = "Dawg2Dict/Dawg2Dict-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		6558585D146EFE8B0034F4BA /* Release */ = {
+		655858EC146F08F30034F4BA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/dawg2dict.dst;
+				DSTROOT = /tmp/Dawg2Dict.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "dawg2dict/dawg2dict-Prefix.pch";
+				GCC_PREFIX_HEADER = "Dawg2Dict/Dawg2Dict-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -211,25 +208,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		65585848146EFE8A0034F4BA /* Build configuration list for PBXProject "Dawg2Dict" */ = {
+		655858D7146F08F30034F4BA /* Build configuration list for PBXProject "Dawg2Dict" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				65585859146EFE8B0034F4BA /* Debug */,
-				6558585A146EFE8B0034F4BA /* Release */,
+				655858E8146F08F30034F4BA /* Debug */,
+				655858E9146F08F30034F4BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6558585B146EFE8B0034F4BA /* Build configuration list for PBXNativeTarget "dawg2dict" */ = {
+		655858EA146F08F30034F4BA /* Build configuration list for PBXNativeTarget "Dawg2Dict" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6558585C146EFE8B0034F4BA /* Debug */,
-				6558585D146EFE8B0034F4BA /* Release */,
+				655858EB146F08F30034F4BA /* Debug */,
+				655858EC146F08F30034F4BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 65585845146EFE8A0034F4BA /* Project object */;
+	rootObject = 655858D4146F08F30034F4BA /* Project object */;
 }
