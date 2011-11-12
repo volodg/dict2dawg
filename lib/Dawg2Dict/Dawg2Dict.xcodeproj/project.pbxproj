@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		655858E1146F08F30034F4BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655858E0146F08F30034F4BA /* Foundation.framework */; };
-		655858E7146F08F30034F4BA /* Dawg2Dict222.mm in Sources */ = {isa = PBXBuildFile; fileRef = 655858E6146F08F30034F4BA /* Dawg2Dict222.mm */; };
+		655858F1146F0A000034F4BA /* Dawg2Dict.mm in Sources */ = {isa = PBXBuildFile; fileRef = 655858F0146F0A000034F4BA /* Dawg2Dict.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,7 +16,7 @@
 		655858E0146F08F30034F4BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		655858E4146F08F30034F4BA /* Dawg2Dict-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dawg2Dict-Prefix.pch"; sourceTree = "<group>"; };
 		655858E5146F08F30034F4BA /* Dawg2Dict.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dawg2Dict.h; sourceTree = "<group>"; };
-		655858E6146F08F30034F4BA /* Dawg2Dict222.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Dawg2Dict222.mm; sourceTree = "<group>"; };
+		655858F0146F0A000034F4BA /* Dawg2Dict.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Dawg2Dict.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				655858E5146F08F30034F4BA /* Dawg2Dict.h */,
-				655858E6146F08F30034F4BA /* Dawg2Dict222.mm */,
+				655858F0146F0A000034F4BA /* Dawg2Dict.mm */,
 				655858E3146F08F30034F4BA /* Supporting Files */,
 			);
 			path = Dawg2Dict;
@@ -134,7 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				655858E7146F08F30034F4BA /* Dawg2Dict222.mm in Sources */,
+				655858F1146F0A000034F4BA /* Dawg2Dict.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +224,7 @@
 				655858EC146F08F30034F4BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
