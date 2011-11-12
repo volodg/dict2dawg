@@ -1,22 +1,17 @@
-//
-//  main.m
-//  dict2dawg
-//
-//  Created by Vladimir on 12.11.11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
+
+#include "dict2dawg.h"
 
 int main (int argc, const char * argv[])
 {
+   @autoreleasepool
+   {
+      NSString* const path_ = [ [ NSBundle mainBundle ] pathForResource: @"ok_dict" ofType: @"txt" ];
 
-   @autoreleasepool {
-       
-       // insert code here...
-       NSLog(@"Hello, World!");
-       
+      dict2dawg_converter( [ path_ cStringUsingEncoding: NSASCIIStringEncoding ]
+                          , "/Users/vgor/Traditional_Dawg.dat"
+                          , "/Users/vgor/Traditional_Dawg_Report.txt" );
    }
-    return 0;
+   return 0;
 }
 

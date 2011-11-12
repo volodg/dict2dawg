@@ -10,6 +10,7 @@
 		6558582E146EECFE0034F4BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6558582D146EECFE0034F4BA /* Foundation.framework */; };
 		65585831146EECFE0034F4BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65585830146EECFE0034F4BA /* main.m */; };
 		65585835146EECFE0034F4BA /* dict2dawg.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65585834146EECFE0034F4BA /* dict2dawg.1 */; };
+		6558583F146EED760034F4BA /* dict2dawg.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558583E146EED760034F4BA /* dict2dawg.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +30,11 @@
 		65585829146EECFE0034F4BA /* dict2dawg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dict2dawg; sourceTree = BUILT_PRODUCTS_DIR; };
 		6558582D146EECFE0034F4BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		65585830146EECFE0034F4BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		65585833146EECFE0034F4BA /* dict2dawg-Prefix.pch */ = {isa = PBXFileReference; path = "dict2dawg-Prefix.pch"; sourceTree = "<group>"; };
+		65585833146EECFE0034F4BA /* dict2dawg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dict2dawg-Prefix.pch"; sourceTree = "<group>"; };
 		65585834146EECFE0034F4BA /* dict2dawg.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = dict2dawg.1; sourceTree = "<group>"; };
+		6558583B146EED1F0034F4BA /* ok_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ok_dict.txt; path = ../../resources/ok_dict.txt; sourceTree = "<group>"; };
+		6558583D146EED690034F4BA /* dict2dawg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dict2dawg.h; sourceTree = "<group>"; };
+		6558583E146EED760034F4BA /* dict2dawg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dict2dawg.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				6558582F146EECFE0034F4BA /* dict2dawg */,
+				6558583C146EED230034F4BA /* Resources */,
 				6558582C146EECFE0034F4BA /* Frameworks */,
 				6558582A146EECFE0034F4BA /* Products */,
 			);
@@ -74,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				65585830146EECFE0034F4BA /* main.m */,
+				6558583D146EED690034F4BA /* dict2dawg.h */,
+				6558583E146EED760034F4BA /* dict2dawg.m */,
 				65585834146EECFE0034F4BA /* dict2dawg.1 */,
 				65585832146EECFE0034F4BA /* Supporting Files */,
 			);
@@ -86,6 +93,14 @@
 				65585833146EECFE0034F4BA /* dict2dawg-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6558583C146EED230034F4BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6558583B146EED1F0034F4BA /* ok_dict.txt */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65585831146EECFE0034F4BA /* main.m in Sources */,
+				6558583F146EED760034F4BA /* dict2dawg.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
