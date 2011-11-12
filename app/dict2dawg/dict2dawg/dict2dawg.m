@@ -24,6 +24,7 @@
 #include <string.h>
 
 #include "dict2dawg.h"
+#include "line_counter.h"
 
 // General high-level program constants.
 #define MAX_MAX 28
@@ -931,14 +932,10 @@ int dict2dawg_converter( const char* inFileNameWithDict
 	char ThisLine[100] = "\0";
    //	int FirstLineIsSize;
 	size_t LineLength;
-   //	
-   //	fgets(ThisLine, 100, Input);
-   //	CutOffExtraChars(ThisLine);
-   //GTODO
-   int FirstLineIsSize = 126383;//Player.txt;
-   //   int FirstLineIsSize = 267750;///Users/vgor/sowpods.txt
-	
-	printf("\n  FirstLineIsSize = Number-Of-Words = |%d|\n", FirstLineIsSize);
+
+   long long FirstLineIsSize = line_counter( inFileNameWithDict );
+
+	printf("\n  FirstLineIsSize = Number-Of-Words = |%lld|\n", FirstLineIsSize);
 	int DictionarySizeIndex[MAX_MAX + 1];
 	for ( X = 0; X <= MAX_MAX; X++ ) DictionarySizeIndex[X] = 0;
 	char **LexiconInRam = (char**)malloc(FirstLineIsSize*sizeof(char *)); 
