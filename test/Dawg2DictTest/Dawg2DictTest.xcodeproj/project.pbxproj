@@ -12,10 +12,8 @@
 		6558589B146F01560034F4BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6558589A146F01560034F4BA /* CoreGraphics.framework */; };
 		655858A1146F01560034F4BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6558589F146F01560034F4BA /* InfoPlist.strings */; };
 		655858A3146F01560034F4BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858A2146F01560034F4BA /* main.m */; };
-		655858A7146F01560034F4BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858A6146F01560034F4BA /* AppDelegate.m */; };
-		655858AA146F01560034F4BA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 655858A8146F01560034F4BA /* MainStoryboard.storyboard */; };
-		655858AD146F01570034F4BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858AC146F01570034F4BA /* ViewController.m */; };
 		655858B5146F01C00034F4BA /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655858B4146F01C00034F4BA /* GHUnitIOS.framework */; };
+		655858B8146F03020034F4BA /* Dawg2DictTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 655858B7146F03020034F4BA /* Dawg2DictTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,12 +25,8 @@
 		655858A0146F01560034F4BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		655858A2146F01560034F4BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		655858A4146F01560034F4BA /* Dawg2DictTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dawg2DictTest-Prefix.pch"; sourceTree = "<group>"; };
-		655858A5146F01560034F4BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		655858A6146F01560034F4BA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		655858A9146F01560034F4BA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		655858AB146F01560034F4BA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		655858AC146F01570034F4BA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		655858B4146F01C00034F4BA /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../../frameworks/GHUnitIOS.framework; sourceTree = "<group>"; };
+		655858B7146F03020034F4BA /* Dawg2DictTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dawg2DictTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,11 +76,7 @@
 		6558589C146F01560034F4BA /* Dawg2DictTest */ = {
 			isa = PBXGroup;
 			children = (
-				655858A5146F01560034F4BA /* AppDelegate.h */,
-				655858A6146F01560034F4BA /* AppDelegate.m */,
-				655858A8146F01560034F4BA /* MainStoryboard.storyboard */,
-				655858AB146F01560034F4BA /* ViewController.h */,
-				655858AC146F01570034F4BA /* ViewController.m */,
+				655858B7146F03020034F4BA /* Dawg2DictTest.m */,
 				6558589D146F01560034F4BA /* Supporting Files */,
 			);
 			path = Dawg2DictTest;
@@ -161,7 +151,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				655858A1146F01560034F4BA /* InfoPlist.strings in Resources */,
-				655858AA146F01560034F4BA /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,8 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				655858A3146F01560034F4BA /* main.m in Sources */,
-				655858A7146F01560034F4BA /* AppDelegate.m in Sources */,
-				655858AD146F01570034F4BA /* ViewController.m in Sources */,
+				655858B8146F03020034F4BA /* Dawg2DictTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,14 +175,6 @@
 				655858A0146F01560034F4BA /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		655858A8146F01560034F4BA /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				655858A9146F01560034F4BA /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
