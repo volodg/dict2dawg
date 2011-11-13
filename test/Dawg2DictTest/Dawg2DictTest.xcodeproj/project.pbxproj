@@ -15,10 +15,11 @@
 		655858B5146F01C00034F4BA /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655858B4146F01C00034F4BA /* GHUnitIOS.framework */; };
 		655858B8146F03020034F4BA /* Dawg2DictTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 655858B7146F03020034F4BA /* Dawg2DictTest.mm */; };
 		655858BD146F056A0034F4BA /* bad_dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655858BA146F056A0034F4BA /* bad_dict.txt */; };
-		655858BE146F056A0034F4BA /* ok_dict.dawg in Resources */ = {isa = PBXBuildFile; fileRef = 655858BB146F056A0034F4BA /* ok_dict.dawg */; };
 		655858BF146F056A0034F4BA /* ok_dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 655858BC146F056A0034F4BA /* ok_dict.txt */; };
 		655858FF146F0A4C0034F4BA /* libDawg2Dict.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 655858FD146F0A220034F4BA /* libDawg2Dict.a */; };
 		65585906146F0AC80034F4BA /* testUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65585905146F0AC70034F4BA /* testUtils.mm */; };
+		6586336C147047FB0032897F /* ok_dict.dawg in Resources */ = {isa = PBXBuildFile; fileRef = 6586336B147047FB0032897F /* ok_dict.dawg */; };
+		6586336E147048400032897F /* short_dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6586336D147048400032897F /* short_dict.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,11 +44,12 @@
 		655858B4146F01C00034F4BA /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../../frameworks/GHUnitIOS.framework; sourceTree = "<group>"; };
 		655858B7146F03020034F4BA /* Dawg2DictTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Dawg2DictTest.mm; sourceTree = "<group>"; };
 		655858BA146F056A0034F4BA /* bad_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bad_dict.txt; path = ../../resources/bad_dict.txt; sourceTree = "<group>"; };
-		655858BB146F056A0034F4BA /* ok_dict.dawg */ = {isa = PBXFileReference; lastKnownFileType = file; name = ok_dict.dawg; path = ../../resources/ok_dict.dawg; sourceTree = "<group>"; };
 		655858BC146F056A0034F4BA /* ok_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ok_dict.txt; path = ../../resources/ok_dict.txt; sourceTree = "<group>"; };
 		655858C8146F06AB0034F4BA /* Dawg2Dict.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Dawg2Dict.xcodeproj; path = ../../lib/dawg2dict/Dawg2Dict.xcodeproj; sourceTree = "<group>"; };
 		65585904146F0AA80034F4BA /* testUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testUtils.h; sourceTree = "<group>"; };
 		65585905146F0AC70034F4BA /* testUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testUtils.mm; sourceTree = "<group>"; };
+		6586336B147047FB0032897F /* ok_dict.dawg */ = {isa = PBXFileReference; lastKnownFileType = file; name = ok_dict.dawg; path = ../../resources/ok_dict.dawg; sourceTree = "<group>"; };
+		6586336D147048400032897F /* short_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = short_dict.txt; path = ../../resources/short_dict.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				655858BA146F056A0034F4BA /* bad_dict.txt */,
-				655858BB146F056A0034F4BA /* ok_dict.dawg */,
 				655858BC146F056A0034F4BA /* ok_dict.txt */,
+				6586336B147047FB0032897F /* ok_dict.dawg */,
+				6586336D147048400032897F /* short_dict.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -212,8 +215,9 @@
 			files = (
 				655858A1146F01560034F4BA /* InfoPlist.strings in Resources */,
 				655858BD146F056A0034F4BA /* bad_dict.txt in Resources */,
-				655858BE146F056A0034F4BA /* ok_dict.dawg in Resources */,
 				655858BF146F056A0034F4BA /* ok_dict.txt in Resources */,
+				6586336C147047FB0032897F /* ok_dict.dawg in Resources */,
+				6586336E147048400032897F /* short_dict.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

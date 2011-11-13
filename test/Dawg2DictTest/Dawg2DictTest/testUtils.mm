@@ -20,7 +20,7 @@ std::string pathToBadPlainDict()
 
 std::string pathToNormalPlainDict()
 {
-   NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"ok_dict" ofType: @"txt" ];
+   NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"short_dict" ofType: @"txt" ];
    const char* cstr_ = [ str_ cStringUsingEncoding: NSASCIIStringEncoding ];
    return std::string( cstr_ );
 }
@@ -45,7 +45,10 @@ const std::vector< std::string > vectorWithPlainDict( const std::string& file )
       trimRight( temp_, "\n\r");
 
       if ( temp_.size() != 0 )
+      {
+         std::transform(temp_.begin(), temp_.end(), temp_.begin(), toupper);
          result_.push_back( temp_ );
+      }
    }
 
    return result_;
@@ -62,7 +65,10 @@ const std::set< std::string > setWithPlainDict( const std::string& file )
       trimRight( temp, "\n\r");
 
       if ( temp.size() != 0 )
+      {
+         std::transform(temp.begin(), temp.end(), temp.begin(), toupper);
          result.insert( temp );
+      }
    }
 
    return result;
