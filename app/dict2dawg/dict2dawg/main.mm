@@ -8,6 +8,7 @@ extern "C"
 
 #include <set>
 #include <string>
+#include <iostream>
 #include <fstream>
 
 static const std::string whiteSpaces( " \f\n\r\t\v" );
@@ -50,12 +51,22 @@ void setWithPlainDict(  )
 //   return result;
 }
 
+//unsigned char ch_a_ = 'а';176
+//unsigned char ch_z_ = 'я';143
+//unsigned char ch_A_ = 'А';144
+//unsigned char ch_Z_ = 'Я';175
+//std::cout << (unsigned int)ch_a_ << std::endl;
+//std::cout << (unsigned int)ch_z_ << std::endl;
+//std::cout << (unsigned int)ch_A_ << std::endl;
+//std::cout << (unsigned int)ch_Z_ << std::endl;
 int main (int argc, const char * argv[])
 {
    @autoreleasepool
    {
 //      setWithPlainDict();
-      dict2dawg_converter( "/Users/vgor/dict2dawg/resources/short_dict.txt"
+      //std::cout << "привет";
+//      std::cout << (unsigned int)('б' >> 2) << std::endl;
+      dict2dawg_converter( "/Users/vgor/dict2dawg/resources/ru_dict.txt"
                           , "/Users/vgor/Traditional_Dawg.dat"
                           , "/Users/vgor/Traditional_Dawg_Report.txt" );
    }

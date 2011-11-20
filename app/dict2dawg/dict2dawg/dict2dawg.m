@@ -33,7 +33,7 @@
 #define LOWER_IT 32
 #define TEN 10
 #define INT_BITS 32
-#define CHILD_BIT_SHIFT 5
+#define CHILD_BIT_SHIFT 8
 #define CHILD_INDEX_BIT_MASK 0X003FFFE0
 #define LETTER_BIT_MASK 0X0000001F
 #define END_OF_WORD_BIT_MASK 0X00800000
@@ -1003,6 +1003,18 @@ int dict2dawg_converter( const char* inFileNameWithDict
 	return 0;
 }
 
+unsigned char charToRuChar( unsigned char char_ )
+{
+   if ( char_ == 184 )
+   {
+      return 33;
+   }
+   else
+   {
+      return char_ - 224;
+   }
+}
+
 void write2binary( int NumberOfLivingNodes, ArrayDawgPtr Result, const char* outFileNameWithDawgBin )
 {
 	printf("\nStep 13 - Creation of the traditional-DAWG is complete, so store it in a binary file for use.\n");
@@ -1018,8 +1030,8 @@ void write2binary( int NumberOfLivingNodes, ArrayDawgPtr Result, const char* out
    //	fwrite( &CurrentNodeInteger, sizeof(int), 1, Data );
 	for ( int X = 1; X <= NumberOfLivingNodes ; X++ ){
 		int CurrentNodeInteger = (Result->DawgArray)[X].Child;
-		CurrentNodeInteger <<= 8;
-		CurrentNodeInteger += ((Result->DawgArray)[X].Letter) - 'A';
+		CurrentNodeInteger <<= CHILD_BIT_SHIFT;//8
+        CurrentNodeInteger += ((Result->DawgArray)[X].Letter);
 		if ( (Result->DawgArray)[X].EndOfWordFlag == TRUE ) CurrentNodeInteger += 0x80;
 		if ( (Result->DawgArray)[X].Next == 0 ) CurrentNodeInteger += 0x40;
 		fwrite( &CurrentNodeInteger, sizeof(int), 1, Data );
