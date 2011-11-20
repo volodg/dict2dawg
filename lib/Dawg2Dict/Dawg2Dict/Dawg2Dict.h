@@ -4,6 +4,8 @@
 #import <vector>
 #import <string>
 
+@class NSString;
+
 class DawgNode
 {
 public:
@@ -19,12 +21,16 @@ public:
 //GTODO fails on contains( "ZZZ" )
 class Dawg2Dict
 {
+   bool russian;
    std::vector<DawgNode> nodes;
    uint32_t next_node_for_char( uint32_t curr_node_index_, unsigned char letter, bool& last_in_word ) const;
+   bool cmn_contains( const std::string& str_ ) const;
 public:
    bool load( const std::string& fname );
    bool ruLoad( const std::string& fname );
+
    bool contains( const std::string& str ) const;
+   bool contains( NSString* str_ ) const;
 };
 
 #endif //DAWG2DICT_HEADER_H_INCLUDED

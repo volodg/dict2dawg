@@ -32,11 +32,11 @@ bool DawgNode::ruUnserialize( FILE* fp )
    unsigned char tmp_ = (bin_node_ & 0x3F);
    if ( tmp_ == 33 )//ё
    {
-      letter = 184;
+      letter = 168;
    }
    else
    {
-      letter = tmp_ + 224;
+      letter = tmp_ + 192;
    }
    next_node    = ( bin_node_ >> 8 ) - 1;
    last_in_word = bin_node_ & 0x80;
@@ -65,7 +65,7 @@ uint32_t Dawg2Dict::next_node_for_char( uint32_t curr_node_index_, unsigned char
    return result_;
 }
 
-bool Dawg2Dict::contains( const std::string& str_ ) const
+bool Dawg2Dict::cmn_contains( const std::string& str_ ) const
 {
    const size_t str_size_ = str_.size();
 
@@ -85,6 +85,54 @@ bool Dawg2Dict::contains( const std::string& str_ ) const
    }
 
    return last_in_word && ( index_ == str_size_ );
+}
+
+static unsigned char windows_1251_toupper( unsigned char ru_char_ )
+{
+   if ( 184 == ru_char_ )
+   {
+      return 168;
+   }
+   if ( ru_char_ >= 224 && ru_char_ <= 255 )
+   {
+      return ru_char_ - 32;
+   }
+   return ru_char_;
+}
+
+bool Dawg2Dict::contains( const std::string& str_ ) const
+{
+   std::string tmp_;
+   if ( russian )
+   {
+      for ( int index_ = 0; index_ < str_.length(); ++index_)
+      {
+         tmp_.push_back( windows_1251_toupper( str_[index_] ) );
+      }
+   }
+   else
+   {
+      for ( int index_ = 0; index_ < str_.length(); ++index_)
+      {
+         tmp_.push_back( toupper( str_[index_] ) );
+      }
+   }
+   return cmn_contains( tmp_ );
+}
+
+bool Dawg2Dict::contains( NSString* str_ ) const
+{
+   str_ = [ str_ uppercaseString ];
+   std::string tmp_;
+   if ( russian )
+   {
+      tmp_ = std::string( [ str_ cStringUsingEncoding: NSWindowsCP1251StringEncoding ] );
+   }
+   else
+   {
+      tmp_ = std::string( [ str_ cStringUsingEncoding: NSASCIIStringEncoding ] );
+   }
+   return cmn_contains( tmp_ );
 }
 
 bool Dawg2Dict::load ( const std::string& fname )
@@ -109,6 +157,8 @@ bool Dawg2Dict::load ( const std::string& fname )
 
 bool Dawg2Dict::ruLoad ( const std::string& fname )
 {
+   russian = true;
+
    FILE* fp;
    uint32_t nsize;
    if ((fp = fopen(fname.c_str(), "rb")) == 0) {

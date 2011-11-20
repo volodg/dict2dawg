@@ -99,4 +99,44 @@
    }
 }
 
+-(void)testSomeEnglishWords
+{
+   Dawg2Dict dict;
+   bool result_ = dict.load( pathToDawgDict() );
+   GHAssertTrue( result_, @"dict should be loaded" );
+
+   GHAssertTrue( dict.contains( @"father" ), @"папа should be in dict" );
+   GHAssertTrue( dict.contains( @"FATHER" ), @"папа should be in dict" );
+   GHAssertTrue( dict.contains( @"FaThEr" ), @"папа should be in dict" );
+
+   GHAssertFalse( dict.contains( @"fatherZ" ), @"папа should not be in dict" );
+   GHAssertFalse( dict.contains( @"FATHERz" ), @"папа should not be in dict" );
+
+   GHAssertTrue( dict.contains( @"jealoushood" ), @"папа should be in dict" );
+   GHAssertTrue( dict.contains( @"JEALOUSHOOD" ), @"папа should be in dict" );
+
+   GHAssertFalse( dict.contains( @"jealoushoodd" ), @"папа should be in dict" );
+   GHAssertFalse( dict.contains( @"jealou" ), @"папа should be in dict" );
+}
+
+-(void)testSomeRussianWords
+{
+   Dawg2Dict dict;
+   bool result_ = dict.ruLoad( pathToRuDawgDict() );
+   GHAssertTrue( result_, @"dict should be loaded" );
+
+   GHAssertTrue( dict.contains( @"папа" ), @"папа should be in dict" );
+   GHAssertTrue( dict.contains( @"ПАПА" ), @"папа should be in dict" );
+   GHAssertTrue( dict.contains( @"пАпА" ), @"папа should be in dict" );
+
+   GHAssertFalse( dict.contains( @"папаЯ" ), @"папа should not be in dict" );
+   GHAssertFalse( dict.contains( @"ПАПАя" ), @"папа should not be in dict" );
+
+   GHAssertTrue( dict.contains( @"набедренник" ), @"папа should be in dict" );
+   GHAssertTrue( dict.contains( @"НАБЕДРЕННИК" ), @"папа should be in dict" );
+
+   GHAssertFalse( dict.contains( @"набедренникк" ), @"папа should be in dict" );
+   GHAssertFalse( dict.contains( @"набедр" ), @"папа should be in dict" );
+}
+
 @end
