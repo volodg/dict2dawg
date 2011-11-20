@@ -21,7 +21,31 @@ bool DawgNode::unserialize( FILE* fp )
    return true;
 }
 
-uint32_t Dawg2Dict::next_node_for_char( uint32_t curr_node_index_, char letter_, bool& out_last_in_word_ ) const
+bool DawgNode::ruUnserialize( FILE* fp )
+{
+   uint32_t bin_node_ = 0;
+   if (fread(&bin_node_, sizeof(uint32_t), 1, fp) != 1) {
+      NSLog( @"DawgNode::unserialize: read error." );
+      return false;
+   }
+
+   unsigned char tmp_ = (bin_node_ & 0x3F);
+   if ( tmp_ == 33 )//ё
+   {
+      letter = 184;
+   }
+   else
+   {
+      letter = tmp_ + 224;
+   }
+   next_node    = ( bin_node_ >> 8 ) - 1;
+   last_in_word = bin_node_ & 0x80;
+   last_in_list = bin_node_ & 0x40;
+
+   return true;
+}
+
+uint32_t Dawg2Dict::next_node_for_char( uint32_t curr_node_index_, unsigned char letter_, bool& out_last_in_word_ ) const
 {
    out_last_in_word_ = false;
 
@@ -51,7 +75,7 @@ bool Dawg2Dict::contains( const std::string& str_ ) const
    uint index_ = 0;
    for( ; index_ < str_size_; ++index_ )
    {
-      char curr_char_ = toupper( str_[index_] );
+      unsigned char curr_char_ = str_[index_];//toupper( str_[index_] );
       curr_node_index_ = next_node_for_char( curr_node_index_, curr_char_, last_in_word );
       if ( -1 == curr_node_index_ )
       {
@@ -77,6 +101,26 @@ bool Dawg2Dict::load ( const std::string& fname )
    nodes.resize(nsize);
    for (uint i=0; i<nsize; i++) {
       if ( !nodes[i].unserialize(fp) )
+         break;
+   }
+   fclose(fp);
+   return true;
+}
+
+bool Dawg2Dict::ruLoad ( const std::string& fname )
+{
+   FILE* fp;
+   uint32_t nsize;
+   if ((fp = fopen(fname.c_str(), "rb")) == 0) {
+      return false;
+   }
+   if (fread(&nsize, sizeof(uint32_t), 1, fp) != 1) {
+      fclose(fp);
+      return false;
+   }
+   nodes.resize(nsize);
+   for (uint i=0; i<nsize; i++) {
+      if ( !nodes[i].ruUnserialize(fp) )
          break;
    }
    fclose(fp);

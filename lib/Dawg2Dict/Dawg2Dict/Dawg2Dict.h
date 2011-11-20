@@ -7,21 +7,23 @@
 class DawgNode
 {
 public:
-   char letter;
+   unsigned char letter;
    bool last_in_word;
    bool last_in_list;
    int32_t next_node;
 public:
    bool unserialize( FILE* fp );
+   bool ruUnserialize( FILE* fp );
 };
 
 //GTODO fails on contains( "ZZZ" )
 class Dawg2Dict
 {
    std::vector<DawgNode> nodes;
-   uint32_t next_node_for_char( uint32_t curr_node_index_, char letter, bool& last_in_word ) const;
+   uint32_t next_node_for_char( uint32_t curr_node_index_, unsigned char letter, bool& last_in_word ) const;
 public:
    bool load( const std::string& fname );
+   bool ruLoad( const std::string& fname );
    bool contains( const std::string& str ) const;
 };
 
