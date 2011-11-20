@@ -18,6 +18,13 @@ std::string pathToRuDawgDict()
    return std::string( cstr_ );
 }
 
+std::string pathToShortRuDawgDict()
+{
+   NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"short_ru_dict" ofType: @"dawg" ];
+   const char* cstr_ = [ str_ cStringUsingEncoding: NSASCIIStringEncoding ];
+   return std::string( cstr_ );
+}
+
 std::string pathToBadPlainDict()
 {
    NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"bad_dict" ofType: @"txt" ];
@@ -28,6 +35,20 @@ std::string pathToBadPlainDict()
 std::string pathToNormalPlainDict()
 {
    NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"ok_dict" ofType: @"txt" ];
+   const char* cstr_ = [ str_ cStringUsingEncoding: NSASCIIStringEncoding ];
+   return std::string( cstr_ );
+}
+
+std::string pathToRuPlainDict()
+{
+   NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"ru_dict" ofType: @"txt" ];
+   const char* cstr_ = [ str_ cStringUsingEncoding: NSASCIIStringEncoding ];
+   return std::string( cstr_ );
+}
+
+std::string pathToShortRuPlainDict()
+{
+   NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"short_ru_dict" ofType: @"txt" ];
    const char* cstr_ = [ str_ cStringUsingEncoding: NSASCIIStringEncoding ];
    return std::string( cstr_ );
 }

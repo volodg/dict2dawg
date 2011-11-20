@@ -7,6 +7,10 @@
 
 std::string pathToDawgDict();
 std::string pathToRuDawgDict();
+std::string pathToShortRuDawgDict();
+
+std::string pathToRuPlainDict();
+std::string pathToShortRuPlainDict();
 
 std::string pathToBadPlainDict();
 std::string pathToNormalPlainDict();
