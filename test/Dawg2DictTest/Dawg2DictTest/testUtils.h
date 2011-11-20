@@ -6,6 +6,8 @@
 #include <set>
 
 std::string pathToDawgDict();
+std::string pathToRuDawgDict();
+
 std::string pathToBadPlainDict();
 std::string pathToNormalPlainDict();
 

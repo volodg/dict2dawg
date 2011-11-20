@@ -1,4 +1,4 @@
-
+ 
 #include <iostream>
 #include <fstream>
 
@@ -7,6 +7,13 @@
 std::string pathToDawgDict()
 {
    NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"ok_dict" ofType: @"dawg" ];
+   const char* cstr_ = [ str_ cStringUsingEncoding: NSASCIIStringEncoding ];
+   return std::string( cstr_ );
+}
+
+std::string pathToRuDawgDict()
+{
+   NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"ru_dict" ofType: @"dawg" ];
    const char* cstr_ = [ str_ cStringUsingEncoding: NSASCIIStringEncoding ];
    return std::string( cstr_ );
 }
