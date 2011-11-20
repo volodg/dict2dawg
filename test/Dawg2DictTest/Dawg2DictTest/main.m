@@ -38,6 +38,8 @@ void exceptionHandler(NSException *exception)
    NSLog(@"%@\n%@", [exception reason], GHUStackTraceFromException(exception));
 }
 
+//unsigned char ch_A_ = 'А';144
+//unsigned char ch_Z_ = 'Я';175
 int main(int argc, char *argv[]) 
 {
    /*!

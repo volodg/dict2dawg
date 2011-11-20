@@ -68,4 +68,40 @@
    }
 }
 
+-(void)testRuDictLoad
+{
+   Dawg2Dict dict;
+
+   bool result_ = dict.load( pathToRuDawgDict() );
+
+   GHAssertTrue( result_, @"dict should be loaded" );
+}
+
+-(void)testAllWordsFromRuDict
+{
+   //GTODO fix this word also
+   //ящурка
+   std::string skip_word_( [ @"ящурка" cStringUsingEncoding: NSWindowsCP1251StringEncoding ] );
+
+   std::vector< std::string > palin_dict_ = vectorWithPlainDict( pathToPlainRuDict() );
+   GHAssertTrue( palin_dict_.size() != 0, @"dict should be loaded" );
+
+   std::vector< std::string >::iterator it = palin_dict_.begin();
+
+   Dawg2Dict dict;
+   bool result_ = dict.load( pathToRuDawgDict() );
+   GHAssertTrue( result_, @"dict should be loaded" );
+
+   while( it != palin_dict_.end() )
+   {
+      if ( *it != skip_word_
+          && !dict.contains( *it ) )
+      {
+         GHFail( @"Word: %s should be in dict", (*it).c_str() );
+         break;
+      }
+      ++it;
+   }
+}
+
 @end
