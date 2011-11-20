@@ -1003,7 +1003,7 @@ int dict2dawg_converter( const char* inFileNameWithDict
 	return 0;
 }
 
-unsigned char charToRuChar( unsigned char char_ )
+static unsigned char charToRuChar( unsigned char char_ )
 {
    if ( char_ == 184 )
    {
@@ -1031,7 +1031,7 @@ void write2binary( int NumberOfLivingNodes, ArrayDawgPtr Result, const char* out
 	for ( int X = 1; X <= NumberOfLivingNodes ; X++ ){
 		int CurrentNodeInteger = (Result->DawgArray)[X].Child;
 		CurrentNodeInteger <<= CHILD_BIT_SHIFT;//8
-        CurrentNodeInteger += ((Result->DawgArray)[X].Letter);
+        CurrentNodeInteger += ((Result->DawgArray)[X].Letter) - 'A';
 		if ( (Result->DawgArray)[X].EndOfWordFlag == TRUE ) CurrentNodeInteger += 0x80;
 		if ( (Result->DawgArray)[X].Next == 0 ) CurrentNodeInteger += 0x40;
 		fwrite( &CurrentNodeInteger, sizeof(int), 1, Data );

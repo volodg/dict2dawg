@@ -18,9 +18,6 @@
 
 -(void)testAllWordsFromDict
 {
-   //GTODO fix this word also
-   std::string skip_word_( "ZZZ" );
-
    std::vector< std::string > palin_dict_ = vectorWithPlainDict( pathToNormalPlainDict() );
    GHAssertTrue( palin_dict_.size() != 0, @"dict should be loaded" );
 
@@ -32,8 +29,7 @@
 
    while( it != palin_dict_.end() )
    {
-      if ( *it != skip_word_
-          && !dict.contains( *it ) )
+      if ( !dict.contains( *it ) )
       {
          GHFail( @"Word: %s should be in dict", (*it).c_str() );
          break;
