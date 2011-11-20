@@ -27,7 +27,7 @@ std::string pathToBadPlainDict()
 
 std::string pathToNormalPlainDict()
 {
-   NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"short_dict" ofType: @"txt" ];
+   NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"ok_dict" ofType: @"txt" ];
    const char* cstr_ = [ str_ cStringUsingEncoding: NSASCIIStringEncoding ];
    return std::string( cstr_ );
 }
