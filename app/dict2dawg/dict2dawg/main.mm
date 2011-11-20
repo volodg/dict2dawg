@@ -67,7 +67,7 @@ int main (int argc, const char * argv[])
       //std::cout << "привет";
 //      std::cout << (unsigned int)('б' >> 2) << std::endl;
       dict2dawg_converter( "/Users/vgor/dict2dawg/resources/ru_dict.txt"
-                          , "/Users/vgor/Traditional_Dawg.dat"
+                          , "/Users/vgor/dict2dawg/resources/ru_dict.dawg"
                           , "/Users/vgor/Traditional_Dawg_Report.txt" );
    }
    return 0;

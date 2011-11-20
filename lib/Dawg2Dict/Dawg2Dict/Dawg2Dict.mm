@@ -75,7 +75,7 @@ bool Dawg2Dict::contains( const std::string& str_ ) const
    uint index_ = 0;
    for( ; index_ < str_size_; ++index_ )
    {
-      unsigned char curr_char_ = str_[index_];//toupper( str_[index_] );
+      unsigned char curr_char_ = toupper( str_[index_] );
       curr_node_index_ = next_node_for_char( curr_node_index_, curr_char_, last_in_word );
       if ( -1 == curr_node_index_ )
       {

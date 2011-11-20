@@ -62,7 +62,7 @@
    {
       if ( dict.contains( *it_ ) )
       {
-         GHFail( @"Word: %s should be in dict", (*it_).c_str() );
+         GHFail( @"Word: %s should not be in dict", (*it_).c_str() );
          break;
       }
    }
@@ -89,7 +89,7 @@
    std::vector< std::string >::iterator it = palin_dict_.begin();
 
    Dawg2Dict dict;
-   bool result_ = dict.load( pathToRuDawgDict() );
+   bool result_ = dict.ruLoad( pathToRuDawgDict() );
    GHAssertTrue( result_, @"dict should be loaded" );
 
    while( it != palin_dict_.end() )
