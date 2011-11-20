@@ -11,6 +11,8 @@ std::string pathToRuDawgDict();
 std::string pathToBadPlainDict();
 std::string pathToNormalPlainDict();
 
+std::string pathToPlainRuDict();
+
 const std::vector< std::string > vectorWithPlainDict( const std::string& file );
 const std::set< std::string > setWithPlainDict( const std::string& file );
 

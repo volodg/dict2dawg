@@ -32,6 +32,13 @@ std::string pathToNormalPlainDict()
    return std::string( cstr_ );
 }
 
+std::string pathToPlainRuDict()
+{
+   NSString* str_ = [ [ NSBundle mainBundle ] pathForResource: @"ru_dict" ofType: @"txt" ];
+   const char* cstr_ = [ str_ cStringUsingEncoding: NSASCIIStringEncoding ];
+   return std::string( cstr_ );
+}
+
 static const std::string whiteSpaces( " \f\n\r\t\v" );
 
 static void trimRight( std::string& str,
