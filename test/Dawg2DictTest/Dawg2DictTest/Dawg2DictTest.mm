@@ -108,11 +108,11 @@
    GHAssertFalse( dict.contains( @"fatherZ" ), @"папа should not be in dict" );
    GHAssertFalse( dict.contains( @"FATHERz" ), @"папа should not be in dict" );
 
-   GHAssertTrue( dict.contains( @"jealoushood" ), @"папа should be in dict" );
-   GHAssertTrue( dict.contains( @"JEALOUSHOOD" ), @"папа should be in dict" );
+   GHAssertTrue( dict.contains( @"carving" ), @"папа should be in dict" );
+   GHAssertTrue( dict.contains( @"CARVING" ), @"папа should be in dict" );
 
-   GHAssertFalse( dict.contains( @"jealoushoodd" ), @"папа should be in dict" );
-   GHAssertFalse( dict.contains( @"jealou" ), @"папа should be in dict" );
+   GHAssertFalse( dict.contains( @"carvingssd" ), @"папа should be in dict" );
+   GHAssertFalse( dict.contains( @"carvi" ), @"папа should be in dict" );
 }
 
 -(void)testSomeRussianWords
