@@ -185,7 +185,7 @@
 		65585889146F01560034F4BA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 6558588C146F01560034F4BA /* Build configuration list for PBXProject "Dawg2DictTest" */;
 			compatibilityVersion = "Xcode 3.2";
