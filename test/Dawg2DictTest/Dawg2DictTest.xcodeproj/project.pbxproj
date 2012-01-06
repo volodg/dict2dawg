@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		654A178814B67AD800EE6EC0 /* libJFFUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F344ED14B677E000F62587 /* libJFFUtils.a */; };
 		65585897146F01560034F4BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65585896146F01560034F4BA /* UIKit.framework */; };
 		65585899146F01560034F4BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65585898146F01560034F4BA /* Foundation.framework */; };
 		6558589B146F01560034F4BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6558589A146F01560034F4BA /* CoreGraphics.framework */; };
@@ -27,12 +28,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		654A178414B67ACB00EE6EC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65F344E514B677E000F62587 /* JFFUtils.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = JFFUtils;
+		};
+		654A178614B67AD200EE6EC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 655858C8146F06AB0034F4BA /* Dawg2Dict.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 655858DC146F08F30034F4BA;
+			remoteInfo = Dawg2Dict;
+		};
 		655858FC146F0A220034F4BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 655858C8146F06AB0034F4BA /* Dawg2Dict.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 655858DD146F08F30034F4BA;
 			remoteInfo = Dawg2Dict;
+		};
+		65F344EC14B677E000F62587 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65F344E514B677E000F62587 /* JFFUtils.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = JFFUtils;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -58,6 +80,7 @@
 		6597474C14796A1E00A7CF33 /* ok_dict.dawg */ = {isa = PBXFileReference; lastKnownFileType = file; name = ok_dict.dawg; path = ../../resources/ok_dict.dawg; sourceTree = "<group>"; };
 		659747701479881300A7CF33 /* short_ru_dict.dawg */ = {isa = PBXFileReference; lastKnownFileType = file; name = short_ru_dict.dawg; path = ../../resources/short_ru_dict.dawg; sourceTree = "<group>"; };
 		659747711479881300A7CF33 /* short_ru_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = short_ru_dict.txt; path = ../../resources/short_ru_dict.txt; sourceTree = "<group>"; };
+		65F344E514B677E000F62587 /* JFFUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JFFUtils.xcodeproj; path = "../../lib-third-party/JFFLibrary/lib/JFFUtils/JFFUtils.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				654A178814B67AD800EE6EC0 /* libJFFUtils.a in Frameworks */,
 				655858FF146F0A4C0034F4BA /* libDawg2Dict.a in Frameworks */,
 				65585897146F01560034F4BA /* UIKit.framework in Frameworks */,
 				65585899146F01560034F4BA /* Foundation.framework in Frameworks */,
@@ -131,6 +155,7 @@
 		655858B3146F01620034F4BA /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				65F344E514B677E000F62587 /* JFFUtils.xcodeproj */,
 				655858C8146F06AB0034F4BA /* Dawg2Dict.xcodeproj */,
 			);
 			name = Dependencies;
@@ -159,6 +184,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		65F344E614B677E000F62587 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65F344ED14B677E000F62587 /* libJFFUtils.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,6 +206,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				654A178714B67AD200EE6EC0 /* PBXTargetDependency */,
+				654A178514B67ACB00EE6EC0 /* PBXTargetDependency */,
 			);
 			name = Dawg2DictTest;
 			productName = Dawg2DictTest;
@@ -202,6 +237,10 @@
 					ProductGroup = 655858C9146F06AB0034F4BA /* Products */;
 					ProjectRef = 655858C8146F06AB0034F4BA /* Dawg2Dict.xcodeproj */;
 				},
+				{
+					ProductGroup = 65F344E614B677E000F62587 /* Products */;
+					ProjectRef = 65F344E514B677E000F62587 /* JFFUtils.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -216,6 +255,13 @@
 			fileType = archive.ar;
 			path = libDawg2Dict.a;
 			remoteRef = 655858FC146F0A220034F4BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		65F344ED14B677E000F62587 /* libJFFUtils.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libJFFUtils.a;
+			remoteRef = 65F344EC14B677E000F62587 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -251,6 +297,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		654A178514B67ACB00EE6EC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JFFUtils;
+			targetProxy = 654A178414B67ACB00EE6EC0 /* PBXContainerItemProxy */;
+		};
+		654A178714B67AD200EE6EC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Dawg2Dict;
+			targetProxy = 654A178614B67AD200EE6EC0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6558589F146F01560034F4BA /* InfoPlist.strings */ = {
@@ -326,6 +385,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dawg2DictTest/Dawg2DictTest-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					../../lib/dawg2dict,
+					"../../lib-third-party/JFFLibrary/lib/",
+				);
 				INFOPLIST_FILE = "Dawg2DictTest/Dawg2DictTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -341,6 +404,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dawg2DictTest/Dawg2DictTest-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					../../lib/dawg2dict,
+					"../../lib-third-party/JFFLibrary/lib/",
+				);
 				INFOPLIST_FILE = "Dawg2DictTest/Dawg2DictTest-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

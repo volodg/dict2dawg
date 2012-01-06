@@ -2,6 +2,8 @@
 
 #include "testUtils.h"
 
+#import <JFFUtils/NSString/NSString+WideString.h>
+
 @interface Dawg2DictTest : GHTestCase
 @end
 
@@ -21,27 +23,30 @@
    std::vector< std::string > palin_dict_ = vectorWithPlainDict( pathToNormalPlainDict() );
    GHAssertTrue( palin_dict_.size() != 0, @"dict should be loaded" );
 
-   std::vector< std::string >::iterator it = palin_dict_.begin();
+   std::vector< std::string >::iterator it_ = palin_dict_.begin();
 
    Dawg2Dict dict;
    bool result_ = dict.load( pathToDawgDict() );
    GHAssertTrue( result_, @"dict should be loaded" );
 
-   while( it != palin_dict_.end() )
-   {
-      if ( !dict.contains( *it ) )
-      {
-         GHFail( @"Word: %s should be in dict", (*it).c_str() );
-         break;
-      }
-      ++it;
-   }
+    while( it_ != palin_dict_.end() )
+    {
+        const char* ptr_ = it_->c_str();
+        NSString* str_ = [ NSString stringWithCString: ptr_ encoding: NSUTF8StringEncoding ];
+
+        if ( !dict.contains( str_ ) )
+        {
+            GHFail( @"Word: %s should be in dict", it_->c_str() );
+            break;
+        }
+        ++it_;
+    }
 }
 
 -(void)testDictsDifference
 {
    std::set< std::string > normalDict = setWithPlainDict( pathToNormalPlainDict() );
-   std::set< std::string > badDict = setWithPlainDict( pathToBadPlainDict() );
+   std::set< std::string > badDict    = setWithPlainDict( pathToBadPlainDict   () );
 
    std::vector< std::string > result;
 
@@ -49,50 +54,54 @@
                    , normalDict.begin(), normalDict.end()
                    , std::inserter( result, result.end() ) );
 
-   Dawg2Dict dict;
-   bool result_ = dict.load( pathToDawgDict() );
-   GHAssertTrue( result_, @"dict should be loaded" );
+    Dawg2Dict dict;
+    bool result_ = dict.load( pathToDawgDict() );
+    GHAssertTrue( result_, @"dict should be loaded" );
 
-   std::vector< std::string >::iterator it_ = result.begin();
-   for ( ; it_ != result.end(); ++it_ )
-   {
-      if ( dict.contains( *it_ ) )
-      {
-         GHFail( @"Word: %s should not be in dict", (*it_).c_str() );
-         break;
-      }
-   }
+    std::vector< std::string >::iterator it_ = result.begin();
+    for ( ; it_ != result.end(); ++it_ )
+    {
+        NSString* str_ = [ NSString stringWithCString: it_->c_str() encoding: NSUTF8StringEncoding ];
+
+        if ( dict.contains( str_ ) )
+        {
+            GHFail( @"Word: %s should not be in dict", (*it_).c_str() );
+            break;
+        }
+    }
 }
 
 -(void)testRuDictLoad
 {
-   Dawg2Dict dict;
+    Dawg2Dict dict;
 
-   bool result_ = dict.load( pathToRuDawgDict() );
+    bool result_ = dict.ruLoad( pathToRuDawgDict() );
 
-   GHAssertTrue( result_, @"dict should be loaded" );
+    GHAssertTrue( result_, @"dict should be loaded" );
 }
 
 -(void)testAllWordsFromRuDict
 {
-   std::vector< std::string > palin_dict_ = vectorWithPlainDict( pathToPlainRuDict() );
-   GHAssertTrue( palin_dict_.size() != 0, @"dict should be loaded" );
+    std::vector< std::string > palin_dict_ = vectorWithPlainDict( pathToPlainRuDict() );
+    GHAssertTrue( palin_dict_.size() != 0, @"dict should be loaded" );
 
-   std::vector< std::string >::iterator it = palin_dict_.begin();
+    std::vector< std::string >::iterator it_ = palin_dict_.begin();
 
-   Dawg2Dict dict;
-   bool result_ = dict.ruLoad( pathToRuDawgDict() );
-   GHAssertTrue( result_, @"dict should be loaded" );
+    Dawg2Dict dict;
+    bool result_ = dict.ruLoad( pathToRuDawgDict() );
+    GHAssertTrue( result_, @"dict should be loaded" );
 
-   while( it != palin_dict_.end() )
-   {
-      if ( !dict.contains( *it ) )
-      {
-         GHFail( @"Word: %s should be in dict", (*it).c_str() );
-         break;
-      }
-      ++it;
-   }
+    while( it_ != palin_dict_.end() )
+    {
+        NSString* str_ = [ NSString stringWithCString: it_->c_str() encoding: NSWindowsCP1251StringEncoding ];
+
+        if ( !dict.contains( str_ ) )
+        {
+            GHFail( @"Word: %@ should be in dict", str_ );
+            break;
+        }
+        ++it_;
+    }
 }
 
 -(void)testSomeEnglishWords
@@ -175,7 +184,8 @@
    std::vector< std::string >::iterator it_ = result.begin();
    for ( ; it_ != result.end(); ++it_ )
    {
-      if ( dict.contains( *it_ ) )
+       NSString* str_ = [ NSString stringWithCString: it_->c_str() encoding: NSWindowsCP1251StringEncoding ];
+      if ( dict.contains( str_ ) )
       {
          GHFail( @"Word: %s should not be in dict", (*it_).c_str() );
          break;

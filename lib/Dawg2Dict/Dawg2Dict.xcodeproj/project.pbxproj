@@ -187,6 +187,7 @@
 				DSTROOT = /tmp/Dawg2Dict.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dawg2Dict/Dawg2Dict-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../../lib-third-party/JFFLibrary/lib/";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -199,6 +200,7 @@
 				DSTROOT = /tmp/Dawg2Dict.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dawg2Dict/Dawg2Dict-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../../lib-third-party/JFFLibrary/lib/";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
