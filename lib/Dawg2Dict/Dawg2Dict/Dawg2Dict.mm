@@ -2,8 +2,6 @@
 
 #import <string>
 
-#import <JFFUtils/NSString/NSString+WideString.h>
-
 using std::wstring;
 using std::vector;
 
@@ -80,10 +78,10 @@ uint32_t Dawg2Dict::next_node_for_char( uint32_t curr_node_index_, wchar_t lette
    return result_;
 }
 
-bool Dawg2Dict::contains( NSString* objecStr ) const
+bool Dawg2Dict::contains( NSString* objecStr_ ) const
 {
-    std::wstring str_ = [ [ objecStr uppercaseString ] toWideString ];
-    const size_t str_size_ = str_.size();
+    objecStr_ = [ objecStr_ uppercaseString ];
+    const size_t str_size_ = [ objecStr_ length ];
 
     int curr_node_index_ = 0;
     bool last_in_word = false;
@@ -91,7 +89,7 @@ bool Dawg2Dict::contains( NSString* objecStr ) const
     uint index_ = 0;
     for( ; index_ < str_size_; ++index_ )
     {
-        wchar_t curr_char_ = str_[index_];
+        wchar_t curr_char_ = [ objecStr_ characterAtIndex: index_ ];
         curr_node_index_ = next_node_for_char( curr_node_index_, curr_char_, last_in_word );
         if ( -1 == curr_node_index_ )
         {
