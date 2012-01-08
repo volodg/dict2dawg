@@ -38,7 +38,6 @@
 		6558583E146EED760034F4BA /* dict2dawg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dict2dawg.m; sourceTree = "<group>"; };
 		65585840146EFB540034F4BA /* line_counter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = line_counter.m; sourceTree = "<group>"; };
 		65585842146EFB5F0034F4BA /* line_counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = line_counter.h; sourceTree = "<group>"; };
-		6597473314793BBF00A7CF33 /* Player.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Player.txt; path = ../../../Dropbox/GameDev/src/Magic_Words/Dictionaries/Russian/Player.txt; sourceTree = "<group>"; };
 		6597473514795C6800A7CF33 /* ru_dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ru_dict.txt; path = ../../resources/ru_dict.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,7 +106,6 @@
 			children = (
 				6597473514795C6800A7CF33 /* ru_dict.txt */,
 				6558583B146EED1F0034F4BA /* ok_dict.txt */,
-				6597473314793BBF00A7CF33 /* Player.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

@@ -1031,7 +1031,8 @@ void write2binary( int NumberOfLivingNodes, ArrayDawgPtr Result, const char* out
 	for ( int X = 1; X <= NumberOfLivingNodes ; X++ ){
 		int CurrentNodeInteger = (Result->DawgArray)[X].Child;
 		CurrentNodeInteger <<= CHILD_BIT_SHIFT;//8
-        CurrentNodeInteger += ((Result->DawgArray)[X].Letter) - 'A';
+        //CurrentNodeInteger += ((Result->DawgArray)[X].Letter) - 'A';
+        CurrentNodeInteger += charToRuChar((Result->DawgArray)[X].Letter);
 		if ( (Result->DawgArray)[X].EndOfWordFlag == TRUE ) CurrentNodeInteger += 0x80;
 		if ( (Result->DawgArray)[X].Next == 0 ) CurrentNodeInteger += 0x40;
 		fwrite( &CurrentNodeInteger, sizeof(int), 1, Data );
